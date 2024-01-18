@@ -1,15 +1,22 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 
 public class HomePage extends BorderPane {
     private AppliReseau appli;
+    private TextArea messageArea;
+    private ChatClient chatClient; 
 
     public HomePage(ConnexionMySQL connexion, AppliReseau appli) {
         this.appli = appli;
+        messageArea = new TextArea();
+        chatClient = new ChatClient("localhost", 5555); // Adresse et port du serveur
 
         // Left side with buttons
         GridPane leftGrid = new GridPane();
@@ -31,7 +38,7 @@ public class HomePage extends BorderPane {
 
         // Center for content (initially empty)
         GridPane centerGrid = new GridPane();
-        setCenter(centerGrid);
+        setCenter(messageArea);
 
         // Event handling
         buttonFollowed.setOnAction(e -> handleButtonAction("Button Followed"));
@@ -46,7 +53,57 @@ public class HomePage extends BorderPane {
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
         newContent.add(new Button("New Content for " + buttonLabel), 0, 0);
-
-        setCenter(newContent);
+        if (buttonLabel == "Button Message"){
+            setCenter(chat());
+        }
     }
+
+    private void sendMessage(String message) {
+        // Send the message to the server using the ChatClient
+        chatClient.sendMessage(message);
+        // Update the UI to display the sent message
+        updateMessageArea("You: " + message);
+    }
+    private void updateMessageArea(String message) {
+        // Update the UI to display the received message
+        messageArea.appendText(message + "\n");
+    }
+
+    private BorderPane chat() {
+        BorderPane borderPane = new BorderPane();
+
+        // Text area for displaying messages
+        TextArea messageArea = new TextArea();
+        messageArea.setEditable(false);
+
+        // Text area for input
+        TextArea inputArea = new TextArea();
+        inputArea.setPromptText("Type your message here...");
+
+        // Send button
+        Button sendButton = new Button("Send");
+        sendButton.setOnAction(e -> {
+            String message = inputArea.getText().trim();
+            if (!message.isEmpty()) {
+                // Send the message to the server using the ChatClient
+                sendMessage(message);
+                // Update the UI to display the sent message
+                updateMessageArea("You: " + message);
+                // Clear the input area
+                inputArea.clear();
+            }
+        });
+
+        // HBox for input and send button
+        HBox inputBox = new HBox(inputArea, sendButton);
+
+        // VBox to hold the message area and input box
+        VBox chatBox = new VBox(messageArea, inputBox);
+
+        // Set the VBox to the center of the BorderPane
+        borderPane.setCenter(chatBox);
+
+        return borderPane;
+    }
+
 }
