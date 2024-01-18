@@ -2,11 +2,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.function.Consumer;
 
 public class ChatClient {
     private Socket socket;
     private DataInputStream input;
     private DataOutputStream output;
+    private Consumer<String> messageCallback;
+
 
     public ChatClient(String serverAddress, int serverPort) {
         try {
@@ -19,13 +22,20 @@ public class ChatClient {
         }
     }
 
+
+    public void setMessageCallback(Consumer<String> callback) {
+        this.messageCallback = callback;
+    }
+
     private void startListening() {
         new Thread(() -> {
             try {
                 while (true) {
                     String message = input.readUTF();
-                    // Process the received message, you can update UI here
-                    System.out.println(message);
+                    // Notify the callback with the received message
+                    if (messageCallback != null) {
+                        messageCallback.accept(message);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();

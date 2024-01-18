@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
+import java.net.InetAddress;
 
 public class HomePage extends BorderPane {
     private AppliReseau appli;
@@ -16,7 +17,8 @@ public class HomePage extends BorderPane {
     public HomePage(ConnexionMySQL connexion, AppliReseau appli) {
         this.appli = appli;
         messageArea = new TextArea();
-        chatClient = new ChatClient("localhost", 5555); // Adresse et port du serveur
+        chatClient = new ChatClient("192.168.13.75", 5555);
+        chatClient.setMessageCallback(this::updateMessageArea);
 
         // Left side with buttons
         GridPane leftGrid = new GridPane();
@@ -71,15 +73,14 @@ public class HomePage extends BorderPane {
 
     private BorderPane chat() {
         BorderPane borderPane = new BorderPane();
-
+    
         // Text area for displaying messages
-        TextArea messageArea = new TextArea();
         messageArea.setEditable(false);
-
+    
         // Text area for input
         TextArea inputArea = new TextArea();
         inputArea.setPromptText("Type your message here...");
-
+    
         // Send button
         Button sendButton = new Button("Send");
         sendButton.setOnAction(e -> {
@@ -93,17 +94,18 @@ public class HomePage extends BorderPane {
                 inputArea.clear();
             }
         });
-
+    
         // HBox for input and send button
         HBox inputBox = new HBox(inputArea, sendButton);
-
+    
         // VBox to hold the message area and input box
         VBox chatBox = new VBox(messageArea, inputBox);
-
+    
         // Set the VBox to the center of the BorderPane
         borderPane.setCenter(chatBox);
-
+    
         return borderPane;
     }
+    
 
 }
