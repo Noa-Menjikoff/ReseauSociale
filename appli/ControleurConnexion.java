@@ -42,11 +42,10 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
         try {
             this.connex.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
             UtilisateurBD ubd = new UtilisateurBD(this.connex);
-            int nj = ubd.connecterUtilisateur(connexion.getTextField(),connexion.getPasswordField());
-
+            Utilisateur utilisateur = ubd.connecterUtilisateur(connexion.getTextField(),connexion.getPasswordField());
+            int nj = ubd.getRowCount();
             if (nj==1){
-                System.err.println("connection réussi");
-                Utilisateur utilisateur = new Utilisateur(); 
+                System.err.println("connection réussi"); 
                 this.appli.afficheFenetreAcceuil(utilisateur);
 
             }

@@ -7,6 +7,8 @@ import java.util.List;
 public class UtilisateurBD {
 	ConnexionMySQL laConnexion;
 	Statement st;
+	int rowCount = 0;
+
 
 	UtilisateurBD(ConnexionMySQL laConnexion){
 		this.laConnexion=laConnexion;
@@ -22,7 +24,7 @@ public class UtilisateurBD {
 	}
 
 
-	int insererUtilisateur(Utilisateur utilisateur) throws SQLException {
+	Utilisateur insererUtilisateur(Utilisateur utilisateur) throws SQLException {
 		int num = maxNumUtil() + 1; // Génère le prochain numéro de l'utilisateur
 	
 		// Create the SQL statement to insert a new user
@@ -37,14 +39,16 @@ public class UtilisateurBD {
 			pstmt.executeUpdate();
 		}
 	
-		return num;
+		return utilisateur;
 	}
 
-	
+	public int getRowCount() {
+		return rowCount;
+	}
 
-	int connecterUtilisateur(String pseudoUt, String mdp) throws SQLException {
-        String query = "SELECT COUNT(*) FROM utilisateurs WHERE nom_utilisateur = ? AND mot_de_passe = ?";
-        int rowCount = 0;
+	Utilisateur connecterUtilisateur(String pseudoUt, String mdp) throws SQLException {
+        String query = "SELECT id, nom_utilisateur, count(mot_de_passe) as cmdp FROM utilisateurs WHERE nom_utilisateur = ? AND mot_de_passe = ?";
+		Utilisateur utilisateur = new Utilisateur(0, "FALSE");
 
         PreparedStatement statement = laConnexion.prepareStatement(query);
         statement.setString(1, pseudoUt);
@@ -52,11 +56,14 @@ public class UtilisateurBD {
 
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
-            rowCount = resultSet.getInt(1);
+			int id = resultSet.getInt("id");
+			String nomUtilisateur = resultSet.getString("nom_utilisateur");
+			utilisateur = new Utilisateur(id, nomUtilisateur);
+            this.rowCount = resultSet.getInt("cmdp");
         }
 		resultSet.close();
         statement.close();
-        return rowCount;
+        return utilisateur;
     }	
 	
 }
