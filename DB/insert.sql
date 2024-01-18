@@ -53,3 +53,15 @@ INSERT INTO abonnements (id_abonne, id_suivi) VALUES (5, 6);
 
 -- Abonnement 6
 INSERT INTO abonnements (id_abonne, id_suivi) VALUES (6, 1);
+
+-- Abonnement 7
+INSERT INTO abonnements (id_abonne, id_suivi) VALUES (1, 3);
+
+-- Abonnement 8
+INSERT INTO abonnements (id_abonne, id_suivi) VALUES (1, 4);
+
+-- Abonnement 9
+INSERT INTO abonnements (id_abonne, id_suivi) VALUES (1, 5);
+
+-- Abonnement 10
+INSERT INTO abonnements (id_abonne, id_suivi) VALUES (1, 6);
