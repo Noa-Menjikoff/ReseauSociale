@@ -44,8 +44,8 @@ public class AppliReseau extends Application{
 
     }
 
-        public void afficheFenetreAcceuil(){
-        Pane root = new HomePage();
+    public void afficheFenetreAcceuil(){
+        Pane root = new HomePage(this.laConnexion,this);
         this.scene.setRoot(root);
     }
 
