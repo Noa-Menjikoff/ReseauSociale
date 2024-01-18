@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class ControleurConnexion implements EventHandler<ActionEvent> {
 
-
-    private SocialNetworkApp connexion;
+    private AppliReseau appli;
+    private FenetreAuth connexion;
     private ConnexionMySQL connex;
 
     /**
@@ -25,7 +25,8 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
      * @param connexion l'instance de FenetreConnexion à utiliser pour les actions liées à la connexion.
      * @param connex    l'instance de ConnexionMySQL à utiliser pour la connexion à la base de données.
      */
-    public ControleurConnexion(SocialNetworkApp connexion, ConnexionMySQL connex) {
+    public ControleurConnexion(AppliReseau appli,FenetreAuth connexion, ConnexionMySQL connex) {
+        this.appli = appli;
         this.connexion = connexion;
         this.connex = connex;
     }
@@ -45,6 +46,7 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
 
             if (nj==1){
                 System.err.println("connection réussi");
+                this.appli.afficheFenetreAcceuil();
             }
             else{
                 Alert alert = new Alert(AlertType.ERROR);

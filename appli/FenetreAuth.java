@@ -5,23 +5,20 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class SocialNetworkApp extends Application {
+public class FenetreAuth extends GridPane {
 
     public TextField tf1;
     public PasswordField tf2;
-    public ConnexionMySQL connexion;
-
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public AppliReseau appli;
 
     
 
-    @Override
-    public void start(Stage primaryStage) throws ClassNotFoundException {
-        this.connexion = new ConnexionMySQL();
-        primaryStage.setTitle("Réseau Social - Connexion/Inscription");
+    
+    public  FenetreAuth(ConnexionMySQL connexionMySQL, AppliReseau appli) {
+        this.tf1 = new TextField();
+        this.tf2 = new PasswordField();
+        this.appli = appli;
+        
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20, 20, 20, 20));
@@ -43,7 +40,7 @@ public class SocialNetworkApp extends Application {
         grid.add(loginButton, 1, 2);
         grid.add(registerButton, 1, 3);
 
-        ControleurConnexion controleurConnexion = new ControleurConnexion(this, this.connexion);
+        ControleurConnexion controleurConnexion = new ControleurConnexion(this.appli,this,connexionMySQL);
         loginButton.setOnAction(controleurConnexion);
 
         // registerButton.setOnAction(e -> {
@@ -53,10 +50,8 @@ public class SocialNetworkApp extends Application {
         // });
 
 
-        Scene scene = new Scene(grid, 1500, 900);
-        primaryStage.setScene(scene);
+        this.getChildren().addAll(grid);
 
-        primaryStage.show();
     }
 
     public String getTextField(){
