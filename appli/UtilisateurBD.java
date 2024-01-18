@@ -22,9 +22,21 @@ public class UtilisateurBD {
 	}
 
 
-	int insererUtilisateur(Utilisateur j) throws SQLException {
-		int num = maxNumUtil() + 1; // Génère le prochain numéro du joueur
+	int insererUtilisateur(Utilisateur utilisateur) throws SQLException {
+		int num = maxNumUtil() + 1; // Génère le prochain numéro de l'utilisateur
+	
+		// Create the SQL statement to insert a new user
+		String insertQuery = "INSERT INTO utilisateurs (id, nom_utilisateur, mot_de_passe) VALUES (?, ?, ?)";
 		
+		try (PreparedStatement pstmt = laConnexion.prepareStatement(insertQuery)) {
+			pstmt.setInt(1, num);
+			pstmt.setString(2, utilisateur.getNomUtilisateur());
+			pstmt.setString(3, utilisateur.getMotDePasse());
+	
+			// Execute the insert query
+			pstmt.executeUpdate();
+		}
+	
 		return num;
 	}
 

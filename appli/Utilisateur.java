@@ -26,7 +26,7 @@ public class Utilisateur {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public String getPseudo() {
+    public String getNomUtilisateur() {
         return pseudo;
     }
 
@@ -34,12 +34,13 @@ public class Utilisateur {
         this.pseudo = pseudo;
     }
 
-    public String getMotdepasse() {
+    public String getMotDePasse() {
         return motdepasse;
     }
 
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
     }
+
 
 }

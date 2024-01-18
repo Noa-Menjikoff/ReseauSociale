@@ -8,6 +8,6 @@ public class HomePage extends GridPane{
 
 
     public HomePage(){
-
+        
     }
 }
