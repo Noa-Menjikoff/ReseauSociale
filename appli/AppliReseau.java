@@ -41,7 +41,6 @@ public class AppliReseau extends Application{
         stage.setFullScreen(false);
         stage.setTitle("Appli avec deux fenêtres");
         stage.show();
-
     }
 
     public void afficheFenetreAcceuil(Utilisateur utilisateurConnecte) {
