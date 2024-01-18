@@ -1,9 +1,12 @@
+DROP TABLE IF EXISTS abonnements;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS utilisateurs;
+
 -- Table pour les utilisateurs
 CREATE TABLE utilisateurs (
     id INT PRIMARY KEY,
     nom_utilisateur VARCHAR(255) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
-    adresse_ip VARCHAR(15) NOT NULL,
     CONSTRAINT unique_nom_utilisateur UNIQUE (nom_utilisateur)
 );
 

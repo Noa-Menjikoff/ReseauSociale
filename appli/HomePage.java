@@ -13,6 +13,7 @@ public class HomePage extends GridPane{
     public HomePage(ConnexionMySQL connexion, AppliReseau appli){
         this.appli = appli;
 
+
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(60));
 
@@ -41,5 +42,6 @@ public class HomePage extends GridPane{
         button5.setOnAction(controleur5);
 
         this.getChildren().addAll(grid);
+
     }
 }

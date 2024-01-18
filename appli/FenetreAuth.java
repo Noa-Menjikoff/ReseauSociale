@@ -43,11 +43,8 @@ public class FenetreAuth extends GridPane {
         ControleurConnexion controleurConnexion = new ControleurConnexion(this.appli,this,connexionMySQL);
         loginButton.setOnAction(controleurConnexion);
 
-        // registerButton.setOnAction(e -> {
-        //     String username = this.tf1.getText();
-        //     String password = this.tf2.getText();
-        //     System.out.println("Inscription de : " + username);
-        // });
+        ControleurInscription controleurInscription = new ControleurInscription(this.appli,this,connexionMySQL);
+        registerButton.setOnAction(controleurInscription);
 
 
         this.getChildren().addAll(grid);
