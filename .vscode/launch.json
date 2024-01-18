@@ -10,6 +10,14 @@
             "request": "launch",
             "vmArgs": "--module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.graphics",
             "mainClass": "AppliReseau",
+            "projectName": "ReseauSociale_5f11e4f4"
+        },
+        {
+            "type": "java",
+            "name": "AppliReseau",
+            "request": "launch",
+            "vmArgs": "--module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.graphics",
+            "mainClass": "AppliReseau",
             "projectName": "ReseauSociale_ee101542"
         },
         {

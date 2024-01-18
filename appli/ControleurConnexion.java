@@ -46,7 +46,9 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
 
             if (nj==1){
                 System.err.println("connection réussi");
-                this.appli.afficheFenetreAcceuil();
+                Utilisateur utilisateur = new Utilisateur(); 
+                this.appli.afficheFenetreAcceuil(utilisateur);
+
             }
             else{
                 Alert alert = new Alert(AlertType.ERROR);

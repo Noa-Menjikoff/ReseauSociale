@@ -1,15 +1,31 @@
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 
 public class HomePage extends BorderPane {
+    private Utilisateur utilisateur;
     private AppliReseau appli;
+    private ConnexionMySQL connexion;
 
-    public HomePage(ConnexionMySQL connexion, AppliReseau appli) {
+    public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur) {
         this.appli = appli;
+        this.utilisateur = utilisateur;
+        this.connexion = connexion;
 
         // Left side with buttons
         GridPane leftGrid = new GridPane();
@@ -45,8 +61,52 @@ public class HomePage extends BorderPane {
         // Replace the content in the center based on the clicked button
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
-        newContent.add(new Button("New Content for " + buttonLabel), 0, 0);
-
+        if (buttonLabel=="Button Followed"){
+            setCenter(pageFollow(this.connexion, utilisateur));
+        }
         setCenter(newContent);
     }
+
+    public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
+        GridPane center = new GridPane();
+        center.setPadding(new Insets(10));
+
+        // VBox pour empiler les éléments verticalement
+        VBox vBox = new VBox();
+        vBox.setSpacing(10);  // Espacement entre les éléments
+
+        // Récupérer les utilisateurs suivis depuis la base de données
+        String query = "SELECT u.nom_utilisateur " +
+                       "FROM utilisateurs u " +
+                       "JOIN abonnements a ON u.id = a.id_suivi " +
+                       "WHERE a.id_abonne = ?";
+
+        try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
+            preparedStatement.setInt(1, utilisateur.getIdUtilisateur());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nomUtilisateur = resultSet.getString("nom_utilisateur");
+
+                // Créer un rectangle délimitant en largeur
+                Rectangle rectangle = new Rectangle(200, 30);  // Ajustez la largeur et la hauteur selon vos besoins
+                rectangle.setFill(Color.LIGHTGRAY);
+
+                // Créer un label avec le nom de l'utilisateur
+                Label label = new Label(nomUtilisateur);
+
+                // Ajouter le rectangle et le label à la VBox
+                vBox.getChildren().addAll(rectangle, label);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Ajouter la VBox au centre de la grille
+        center.add(vBox, 0, 0);
+
+        return center;
+    }
 }
+
+
