@@ -1,5 +1,3 @@
-INSERT INTO utilisateurs (id, nom_utilisateur, mot_de_passe, adresse_ip) 
-VALUES (1, 'noa', 'noa', '192.168.13.75');
 
 -- Utilisateur 1
 INSERT INTO utilisateurs (id, nom_utilisateur, mot_de_passe) VALUES (1, 'utilisateur1', 'pass1');
