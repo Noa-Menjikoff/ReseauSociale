@@ -1,3 +1,8 @@
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -33,6 +38,9 @@ public class AppliReseau extends Application{
         stage.setTitle("Appli avec deux fenêtres");
         stage.show();
     }
+
+
+
 
     public void afficheFenetreAcceuil(Utilisateur utilisateurConnecte) {
         Pane root = new HomePage(this.laConnexion, this, utilisateurConnecte);

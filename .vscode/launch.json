@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ChatClient",
+            "request": "launch",
+            "mainClass": "ChatClient",
+            "projectName": "ReseauSociale_ee101542"
+        },
+        {
+            "type": "java",
+            "name": "ChatServer",
+            "request": "launch",
+            "mainClass": "ChatServer",
+            "projectName": "ReseauSociale_ee101542"
+        },
+        {
+            "type": "java",
             "name": "AppliReseau",
             "request": "launch",
             "vmArgs": "--module-path /usr/share/openjfx/lib --add-modules javafx.controls,javafx.graphics",
