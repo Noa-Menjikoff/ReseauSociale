@@ -56,12 +56,10 @@ public class HomePage extends BorderPane {
         Button buttonMessage = new Button("Accédez à mes discussions");
         Button button3 = new Button("Cherchez des contacts");
         Button button4 = new Button("Afficher mon historique");
-        Button button5 = new Button("5");
         leftGrid.add(buttonFollowed, 0, 0);
         leftGrid.add(buttonMessage, 0, 1);
         leftGrid.add(button3, 0, 2);
         leftGrid.add(button4, 0, 3);
-        leftGrid.add(button5, 0, 4);
         setLeft(leftGrid);
 
 
@@ -94,13 +92,6 @@ public class HomePage extends BorderPane {
         button4.setOnAction(e -> {
             try {
                 handleButtonAction("Button Historique de message");
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        });
-        button5.setOnAction(e -> {
-            try {
-                handleButtonAction("Button 5");
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
