@@ -28,3 +28,11 @@ CREATE TABLE abonnements (
     FOREIGN KEY (id_abonne) REFERENCES utilisateurs(id),
     FOREIGN KEY (id_suivi) REFERENCES utilisateurs(id)
 );
+
+CREATE TABLE like(
+    id_utilisateur INT,
+    id_message INT,
+    PRIMARY KEY (id_utilisateur, id_message),
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id),
+    FOREIGN KEY (id_message) REFERENCES messages(id_message)
+);
