@@ -1,24 +1,14 @@
-import java.sql.*;
-import java.time.LocalDateTime;
-
-public class MessageBD {
-	ConnexionMySQL laConnexion;
-	Statement st;
-
-	MessageBD(ConnexionMySQL laConnexion){
+class MessageBD
+!!!135298.java!!!	MessageBD(inout laConnexion : ConnexionMySQL)
 		this.laConnexion=laConnexion;
-	}
-
-	int maxId() throws SQLException{
+!!!135426.java!!!	maxId() : int
 		st = laConnexion.createStatement();
 		ResultSet rs = st.executeQuery("SELECT MAX(id_message) FROM messages");
 		rs.next();
 		int res = rs.getInt(1);
 		rs.close();
 		return res;
-	}
-
-	int insererUtilisateur(int userId,String contenu) throws SQLException {
+!!!135554.java!!!	insererUtilisateur(in userId : int, in contenu : String) : int
 		int num = maxId() + 1; // Génère le prochain numéro de l'utilisateur
 	
 		// Create the SQL statement to insert a new user
@@ -36,7 +26,3 @@ public class MessageBD {
 		}
 	
 		return num;
-	}
-	
-}
-

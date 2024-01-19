@@ -1,0 +1,33 @@
+class ChatServer
+!!!130306.java!!!	ChatServer(in port : int)
+        try {
+            serverSocket = new ServerSocket(port);
+            startServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+!!!130434.java!!!	startServer() : void
+        System.out.println("Server is running on port " + serverSocket.getLocalPort());
+
+        while (true) {
+            try {
+                Socket socket = serverSocket.accept();
+                System.out.println("New client connected: " + socket);
+
+                ClientHandler clientHandler = new ClientHandler(socket, this);
+                clients.add(clientHandler);
+
+                new Thread(clientHandler).start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+!!!130562.java!!!	broadcast(in message : String, inout sender : ClientHandler) : void
+        for (ClientHandler client : clients) {
+            if (client != sender) {
+                client.sendMessage(message);
+            }
+        }
+!!!130690.java!!!	main(inout args : String [[]]) : void
+        int port = 5555;
+        new ChatServer(port);

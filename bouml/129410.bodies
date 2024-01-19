@@ -1,22 +1,9 @@
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import java.sql.SQLException;
-
-public class ControleurConnexion implements EventHandler<ActionEvent> {
-    private AppliReseau appli;
-    private FenetreAuth connexion;
-    private ConnexionMySQL connex;
-
-    public ControleurConnexion(AppliReseau appli,FenetreAuth connexion, ConnexionMySQL connex) {
+class ControleurConnexion
+!!!132098.java!!!	ControleurConnexion(inout appli : AppliReseau, inout connexion : FenetreAuth, inout connex : ConnexionMySQL)
         this.appli = appli;
         this.connexion = connexion;
         this.connex = connex;
-    }
-
-    @Override
-    public void handle(ActionEvent event) {
+!!!132226.java!!!	handle(inout event : ActionEvent) : void
         try {
             this.connex.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
             UtilisateurBD ubd = new UtilisateurBD(this.connex);
@@ -43,6 +30,3 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-}
-

@@ -1,0 +1,2467 @@
+format 224
+"src" // src
+  revision 1
+  modified_by 2 "o22202952"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "/home/iut45/Etudiants/o22202952/WinHome/sem_1/SAE/ReseauSociale/src/"
+  classview 128130 "src"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128130 "Adm"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128130 // <generalisation>
+	relation 128130 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128130 // <generalisation>
+	  b parent class_ref 128258 // BorderPane
+      end
+
+      classrelation 128258 // utilisateur (<unidirectional association>)
+	relation 128258 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128258 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 128386 // appli (<unidirectional association>)
+	relation 128386 --->
+	  a role_name "appli" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128386 // appli (<unidirectional association>)
+	  b parent class_ref 128514 // AppliReseau
+      end
+
+      attribute 128130 "messageArea"
+	private explicit_type "TextArea"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128514 // connexion (<unidirectional association>)
+	relation 128514 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128514 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      operation 128130 "Adm"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "appli" type class_ref 128514 // AppliReseau
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128258 "executer"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128386 "handleButtonAction"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "buttonLabel" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128514 "pageSuppMessage"
+	public explicit_return_type "GridPane"
+	nparams 2
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128642 "setSuppMessage"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128770 "setSuppUtilisateur"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128898 "pageSuppUtilisateur"
+	public explicit_return_type "GridPane"
+	nparams 2
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128386 "Utilisateur"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 130434 "pseudo"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130562 "motdepasse"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130690 "idUtilisateur"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 137346 "Utilisateur"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "pseudo" explicit_type "String"
+	  param in name "motdepasse" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137474 "Utilisateur"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "idUtilisateur" explicit_type "int"
+	  param in name "pseudo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137602 "getIdUtilisateur"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137730 "setIdUtilisateur"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "idUtilisateur" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137858 "getNomUtilisateur"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137986 "setPseudo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "pseudo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138114 "getMotDePasse"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138242 "setMotdepasse"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "motdepasse" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128514 "AppliReseau"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128642 // <generalisation>
+	relation 128642 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128642 // <generalisation>
+	  b parent class_ref 128770 // Application
+      end
+
+      attribute 128258 "scene"
+	private explicit_type "Scene"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128770 // laConnexion (<unidirectional association>)
+	relation 128770 --->
+	  a role_name "laConnexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128770 // laConnexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      operation 129026 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129154 "init"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "ClassNotFoundException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 129282 "start"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "stage" explicit_type "Stage"
+	nexceptions 1
+	  explicit_exception "Exception"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 129410 "afficheFenetreAcceuil"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "utilisateurConnecte" type class_ref 128386 // Utilisateur
+	  param in name "ip" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129538 "afficheFenetreAdm"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "utilisateurConnecte" type class_ref 128386 // Utilisateur
+	  param in name "ip" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128642 "ConnexionMySQL"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 129410 "mysql"
+	private explicit_type "Connection"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129538 "connecte"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 131202 "ConnexionMySQL"
+	public explicit_return_type ""
+	nparams 0
+	nexceptions 1
+	  explicit_exception "ClassNotFoundException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131330 "connecter"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "nomServeur" explicit_type "String"
+	  param in name "nomBase" explicit_type "String"
+	  param in name "nomLogin" explicit_type "String"
+	  param in name "motDePasse" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131458 "close"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131586 "isConnecte"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131714 "createStatement"
+	public explicit_return_type "Statement"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131842 "prepareStatement"
+	public explicit_return_type "PreparedStatement"
+	nparams 1
+	  param in name "requete" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131970 "getMySQLConnection"
+	public explicit_return_type "Connection"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Nouvelle méthode pour obtenir la connexion MySQL"
+      end
+    end
+
+    class 128898 "ChatClient"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128386 "socket"
+	private explicit_type "Socket"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128514 "input"
+	private explicit_type "DataInputStream"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128642 "output"
+	private explicit_type "DataOutputStream"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128770 "messageCallback"
+	private explicit_type "String"
+	stereotype "Consumer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129666 "ChatClient"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "serverAddress" explicit_type "String"
+	  param in name "serverPort" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129794 "setMessageCallback"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "callback" explicit_type "Consumer<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129922 "startListening"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130050 "sendMessage"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130178 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129026 "ChatServer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128898 "serverSocket"
+	private explicit_type "ServerSocket"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 128898 // clients (<unidirectional association>)
+	relation 128898 --->
+	  stereotype "List"
+	  a role_name "clients" init_value " new ArrayList<>()" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 128898 // clients (<unidirectional association>)
+	  b parent class_ref 129154 // ClientHandler
+      end
+
+      operation 130306 "ChatServer"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "port" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130434 "startServer"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130562 "broadcast"
+	package explicit_return_type "void"
+	nparams 2
+	  param in name "message" explicit_type "String"
+	  param inout name "sender" type class_ref 129154 // ClientHandler
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130690 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129154 "ClientHandler"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129026 // <realization>
+	relation 129026 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129026 // <realization>
+	  b parent class_ref 129282 // Runnable
+      end
+
+      attribute 129026 "socket"
+	private explicit_type "Socket"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 129154 // server (<unidirectional association>)
+	relation 129154 --->
+	  a role_name "server" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129154 // server (<unidirectional association>)
+	  b parent class_ref 129026 // ChatServer
+      end
+
+      attribute 129154 "input"
+	private explicit_type "DataInputStream"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129282 "output"
+	private explicit_type "DataOutputStream"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 130818 "ClientHandler"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "socket" explicit_type "Socket"
+	  param inout name "server" type class_ref 129026 // ChatServer
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130946 "run"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 131074 "sendMessage"
+	package explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129410 "ControleurConnexion"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129282 // <realization>
+	relation 129282 -_-|>
+	  a public
+	    java "${type}<ActionEvent>"
+	    classrelation_ref 129282 // <realization>
+	  b parent class_ref 129538 // EventHandler
+      end
+
+      classrelation 129410 // appli (<unidirectional association>)
+	relation 129410 --->
+	  a role_name "appli" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129410 // appli (<unidirectional association>)
+	  b parent class_ref 128514 // AppliReseau
+      end
+
+      classrelation 129538 // connexion (<unidirectional association>)
+	relation 129538 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129538 // connexion (<unidirectional association>)
+	  b parent class_ref 129666 // FenetreAuth
+      end
+
+      classrelation 129666 // connex (<unidirectional association>)
+	relation 129666 --->
+	  a role_name "connex" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129666 // connex (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      operation 132098 "ControleurConnexion"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "appli" type class_ref 128514 // AppliReseau
+	  param inout name "connexion" type class_ref 129666 // FenetreAuth
+	  param inout name "connex" type class_ref 128642 // ConnexionMySQL
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132226 "handle"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" explicit_type "ActionEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 129666 "FenetreAuth"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130306 // <generalisation>
+	relation 130306 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130306 // <generalisation>
+	  b parent class_ref 129922 // GridPane
+      end
+
+      attribute 129666 "tf1"
+	public explicit_type "TextField"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129794 "tf3"
+	public explicit_type "TextField"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129922 "tf2"
+	public explicit_type "PasswordField"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 130434 // appli (<unidirectional association>)
+	relation 130434 --->
+	  a role_name "appli" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130434 // appli (<unidirectional association>)
+	  b parent class_ref 128514 // AppliReseau
+      end
+
+      operation 132610 "FenetreAuth"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "connexionMySQL" type class_ref 128642 // ConnexionMySQL
+	  param inout name "appli" type class_ref 128514 // AppliReseau
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132738 "getTextField"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132866 "getIp"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132994 "getPasswordField"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129794 "ControleurInscription"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129794 // <realization>
+	relation 129794 -_-|>
+	  a public
+	    java "${type}<ActionEvent>"
+	    classrelation_ref 129794 // <realization>
+	  b parent class_ref 129538 // EventHandler
+      end
+
+      classrelation 129922 // appli (<unidirectional association>)
+	relation 129922 --->
+	  a role_name "appli" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129922 // appli (<unidirectional association>)
+	  b parent class_ref 128514 // AppliReseau
+      end
+
+      classrelation 130050 // inscription (<unidirectional association>)
+	relation 130050 --->
+	  a role_name "inscription" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130050 // inscription (<unidirectional association>)
+	  b parent class_ref 129666 // FenetreAuth
+      end
+
+      classrelation 130178 // connex (<unidirectional association>)
+	relation 130178 --->
+	  a role_name "connex" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130178 // connex (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      operation 132354 "ControleurInscription"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "appli" type class_ref 128514 // AppliReseau
+	  param inout name "inscription" type class_ref 129666 // FenetreAuth
+	  param inout name "connex" type class_ref 128642 // ConnexionMySQL
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132482 "handle"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" explicit_type "ActionEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 130050 "HistoriqueMessage"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130562 // connexion (<unidirectional association>)
+	relation 130562 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130562 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      classrelation 130690 // utilisateur (<unidirectional association>)
+	relation 130690 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130690 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 130818 // page (<unidirectional association>)
+	relation 130818 --->
+	  a role_name "page" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130818 // page (<unidirectional association>)
+	  b parent class_ref 130178 // HomePage
+      end
+
+      operation 133122 "HistoriqueMessage"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param inout name "page" type class_ref 130178 // HomePage
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133250 "executer"
+	public explicit_return_type "GridPane"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133378 "supprimerMessage"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "idMessage" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130178 "HomePage"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130946 // <generalisation>
+	relation 130946 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130946 // <generalisation>
+	  b parent class_ref 128258 // BorderPane
+      end
+
+      classrelation 131074 // utilisateur (<unidirectional association>)
+	relation 131074 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131074 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 131202 // appli (<unidirectional association>)
+	relation 131202 --->
+	  a role_name "appli" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131202 // appli (<unidirectional association>)
+	  b parent class_ref 128514 // AppliReseau
+      end
+
+      attribute 130050 "messageArea"
+	private explicit_type "VBox"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 131330 // chatClient (<unidirectional association>)
+	relation 131330 --->
+	  a role_name "chatClient" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131330 // chatClient (<unidirectional association>)
+	  b parent class_ref 128898 // ChatClient
+      end
+
+      classrelation 131458 // connexion (<unidirectional association>)
+	relation 131458 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131458 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      attribute 130178 "userId"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 131586 // messageBD (<unidirectional association>)
+	relation 131586 --->
+	  a role_name "messageBD" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131586 // messageBD (<unidirectional association>)
+	  b parent class_ref 130306 // MessageBD
+      end
+
+      operation 133506 "HomePage"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "appli" type class_ref 128514 // AppliReseau
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param in name "ip" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133634 "executer"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133762 "handleButtonAction"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "buttonLabel" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133890 "pageFollow"
+	public explicit_return_type "GridPane"
+	nparams 2
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134018 "setFollow"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134146 "setToFollow"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134274 "setHistoriqueMessage"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134402 "pageToFollow"
+	public explicit_return_type "GridPane"
+	nparams 2
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134530 "pageHistoriqueMessage"
+	public explicit_return_type "GridPane"
+	nparams 2
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134658 "displayAllMessagesFromDatabase"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134786 "sendMessageToDatabase"
+	private explicit_return_type "void"
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param in name "message" explicit_type "String"
+	  param in name "userId" explicit_type "int"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134914 "sendMessage"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135042 "updateMessageArea"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135170 "chat"
+	private explicit_return_type "BorderPane"
+	nparams 1
+	  param in name "userId" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130306 "MessageBD"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 131714 // laConnexion (<unidirectional association>)
+	relation 131714 --->
+	  a role_name "laConnexion" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131714 // laConnexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      attribute 130306 "st"
+	package explicit_type "Statement"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 135298 "MessageBD"
+	package explicit_return_type ""
+	nparams 1
+	  param inout name "laConnexion" type class_ref 128642 // ConnexionMySQL
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135426 "maxId"
+	package explicit_return_type "int"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135554 "insererUtilisateur"
+	package explicit_return_type "int"
+	nparams 2
+	  param in name "userId" explicit_type "int"
+	  param in name "contenu" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130434 "PageFollow"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 131842 // connexion (<unidirectional association>)
+	relation 131842 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131842 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      classrelation 131970 // utilisateur (<unidirectional association>)
+	relation 131970 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131970 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 132098 // page (<unidirectional association>)
+	relation 132098 --->
+	  a role_name "page" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132098 // page (<unidirectional association>)
+	  b parent class_ref 130178 // HomePage
+      end
+
+      operation 135682 "PageFollow"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param inout name "page" type class_ref 130178 // HomePage
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135810 "executer"
+	public explicit_return_type "GridPane"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135938 "desabonnerUtilisateur"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "idSuivi" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130562 "PageSuppMessage"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 132226 // connexion (<unidirectional association>)
+	relation 132226 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132226 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      classrelation 132354 // utilisateur (<unidirectional association>)
+	relation 132354 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132354 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 132482 // page (<unidirectional association>)
+	relation 132482 --->
+	  a role_name "page" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132482 // page (<unidirectional association>)
+	  b parent class_ref 128130 // Adm
+      end
+
+      operation 136066 "PageSuppMessage"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param inout name "page" type class_ref 128130 // Adm
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136194 "executer"
+	public explicit_return_type "GridPane"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136322 "supprimerMessage"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "idMessage" explicit_type "int"
+	  param in name "idUtilisateur" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fonction pour supprimer un message"
+      end
+    end
+
+    class 130690 "PageSuppUtilisateur"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 132610 // connexion (<unidirectional association>)
+	relation 132610 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132610 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      classrelation 132738 // utilisateur (<unidirectional association>)
+	relation 132738 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132738 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 132866 // page (<unidirectional association>)
+	relation 132866 --->
+	  a role_name "page" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132866 // page (<unidirectional association>)
+	  b parent class_ref 128130 // Adm
+      end
+
+      operation 136450 "PageSuppUtilisateur"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param inout name "page" type class_ref 128130 // Adm
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136578 "executer"
+	public explicit_return_type "GridPane"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136706 "supprimerUtilisateur"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "idUtilisateur" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fonction pour supprimer un utilisateur"
+      end
+    end
+
+    class 130818 "PageToFollow"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 132994 // connexion (<unidirectional association>)
+	relation 132994 --->
+	  a role_name "connexion" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132994 // connexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      classrelation 133122 // utilisateur (<unidirectional association>)
+	relation 133122 --->
+	  a role_name "utilisateur" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133122 // utilisateur (<unidirectional association>)
+	  b parent class_ref 128386 // Utilisateur
+      end
+
+      classrelation 133250 // page (<unidirectional association>)
+	relation 133250 --->
+	  a role_name "page" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133250 // page (<unidirectional association>)
+	  b parent class_ref 130178 // HomePage
+      end
+
+      operation 136834 "PageToFollow"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "connexion" type class_ref 128642 // ConnexionMySQL
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	  param inout name "page" type class_ref 130178 // HomePage
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136962 "executer"
+	public explicit_return_type "GridPane"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137090 "estAbonne"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param in name "idSuivi" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137218 "sAbonner"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "idSuivi" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130946 "UtilisateurBD"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 133378 // laConnexion (<unidirectional association>)
+	relation 133378 --->
+	  a role_name "laConnexion" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133378 // laConnexion (<unidirectional association>)
+	  b parent class_ref 128642 // ConnexionMySQL
+      end
+
+      attribute 130818 "st"
+	package explicit_type "Statement"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130946 "rowCount"
+	package explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 138370 "UtilisateurBD"
+	package explicit_return_type ""
+	nparams 1
+	  param inout name "laConnexion" type class_ref 128642 // ConnexionMySQL
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138498 "maxNumUtil"
+	public explicit_return_type "int"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138626 "insererUtilisateur"
+	public return_type class_ref 128386 // Utilisateur
+	nparams 1
+	  param inout name "utilisateur" type class_ref 128386 // Utilisateur
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138754 "getRowCount"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138882 "connecterUtilisateur"
+	package return_type class_ref 128386 // Utilisateur
+	nparams 2
+	  param in name "pseudoUt" explicit_type "String"
+	  param in name "mdp" explicit_type "String"
+	nexceptions 1
+	  explicit_exception "SQLException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    classdiagram 128258 "dd1"
+      classdiagramsettings show_members_full_definition no show_members_visibility yes show_members_stereotype yes member_max_width 0 show_relation_visibility yes end
+      size A0
+    end
+  end
+
+  deploymentview 128130 "src"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128130 "Adm"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import java.sql.SQLException;
+import javafx.geometry.Insets;
+${definition}"
+      associated_elems
+	class_ref 128130 // Adm
+      end
+    end
+
+    artifact 128258 "AppliReseau"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+${definition}"
+      associated_elems
+	class_ref 128514 // AppliReseau
+      end
+    end
+
+    artifact 128386 "ChatClient"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.function.Consumer;
+${definition}"
+      associated_elems
+	class_ref 128898 // ChatClient
+      end
+    end
+
+    artifact 128514 "ChatServer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+${definition}"
+      associated_elems
+	class_ref 129026 // ChatServer
+	class_ref 129154 // ClientHandler
+      end
+    end
+
+    artifact 128642 "ConnexionMySQL"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+${definition}"
+      associated_elems
+	class_ref 128642 // ConnexionMySQL
+      end
+    end
+
+    artifact 128770 "ControleurConnexion"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 129410 // ControleurConnexion
+      end
+    end
+
+    artifact 128898 "ControleurInscription"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 129794 // ControleurInscription
+      end
+    end
+
+    artifact 129026 "FenetreAuth"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+${definition}"
+      associated_elems
+	class_ref 129666 // FenetreAuth
+      end
+    end
+
+    artifact 129154 "HistoriqueMessage"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 130050 // HistoriqueMessage
+      end
+    end
+
+    artifact 129282 "HomePage"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 130178 // HomePage
+      end
+    end
+
+    artifact 129410 "MessageBD"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.sql.*;
+import java.time.LocalDateTime;
+${definition}"
+      associated_elems
+	class_ref 130306 // MessageBD
+      end
+    end
+
+    artifact 129538 "PageFollow"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
+${definition}"
+      associated_elems
+	class_ref 130434 // PageFollow
+      end
+    end
+
+    artifact 129666 "PageSuppMessage"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 130562 // PageSuppMessage
+      end
+    end
+
+    artifact 129794 "PageSuppUtilisateur"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+${definition}"
+      associated_elems
+	class_ref 130690 // PageSuppUtilisateur
+      end
+    end
+
+    artifact 129922 "PageToFollow"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+${definition}"
+      associated_elems
+	class_ref 130818 // PageToFollow
+      end
+    end
+
+    artifact 130050 "Utilisateur"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 128386 // Utilisateur
+      end
+    end
+
+    artifact 130178 "UtilisateurBD"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.sql.*;
+${definition}"
+      associated_elems
+	class_ref 130946 // UtilisateurBD
+      end
+    end
+  end
+
+  classview 128386 "vue1"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    associated_deployment_view deploymentview_ref 128258 // vue1
+    classdiagram 128130 "d1"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+  end
+
+  deploymentview 128258 "vue1"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+  end
+end

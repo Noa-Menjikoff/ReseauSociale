@@ -1,22 +1,9 @@
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import java.sql.SQLException;
-
-public class ControleurInscription implements EventHandler<ActionEvent> {
-    private AppliReseau appli;
-    private FenetreAuth inscription;
-    private ConnexionMySQL connex;
-
-    public ControleurInscription(AppliReseau appli, FenetreAuth inscription, ConnexionMySQL connex) {
+class ControleurInscription
+!!!132354.java!!!	ControleurInscription(inout appli : AppliReseau, inout inscription : FenetreAuth, inout connex : ConnexionMySQL)
         this.appli = appli;
         this.inscription = inscription;
         this.connex = connex;
-    }
-
-    @Override
-    public void handle(ActionEvent event) {
+!!!132482.java!!!	handle(inout event : ActionEvent) : void
         Utilisateur util = new Utilisateur(inscription.getTextField(), inscription.getPasswordField());
         
         try {
@@ -34,6 +21,3 @@ public class ControleurInscription implements EventHandler<ActionEvent> {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-    }
-}
-

@@ -1,0 +1,20 @@
+class Utilisateur
+!!!137346.java!!!	Utilisateur(in pseudo : String, in motdepasse : String)
+        this.pseudo = pseudo;
+        this.motdepasse = motdepasse;
+!!!137474.java!!!	Utilisateur(in idUtilisateur : int, in pseudo : String)
+        this.idUtilisateur = idUtilisateur;
+        this.pseudo = pseudo;
+
+!!!137602.java!!!	getIdUtilisateur() : int
+        return this.idUtilisateur;
+!!!137730.java!!!	setIdUtilisateur(in idUtilisateur : int) : void
+        this.idUtilisateur = idUtilisateur;
+!!!137858.java!!!	getNomUtilisateur() : String
+        return pseudo;
+!!!137986.java!!!	setPseudo(in pseudo : String) : void
+        this.pseudo = pseudo;
+!!!138114.java!!!	getMotDePasse() : String
+        return motdepasse;
+!!!138242.java!!!	setMotdepasse(in motdepasse : String) : void
+        this.motdepasse = motdepasse;

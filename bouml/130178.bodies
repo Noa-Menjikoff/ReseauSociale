@@ -1,30 +1,5 @@
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.application.Platform;
-import javafx.geometry.Insets;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class HomePage extends BorderPane {
-    private Utilisateur utilisateur;
-    private AppliReseau appli;
-
-    private VBox messageArea;
-    private ChatClient chatClient; 
-    private ConnexionMySQL connexion;
-    private int userId;
-    private MessageBD messageBD;
-
-  
-    public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur, String ip) {
+class HomePage
+!!!133506.java!!!	HomePage(inout connexion : ConnexionMySQL, inout appli : AppliReseau, inout utilisateur : Utilisateur, in ip : String)
         this.appli = appli;
         this.utilisateur = utilisateur;
         this.connexion = connexion;
@@ -36,9 +11,7 @@ public class HomePage extends BorderPane {
         messageArea = new VBox();
         chatClient = new ChatClient(ip, 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
-    }
-
-    private void executer(){
+!!!133634.java!!!	executer() : void
         GridPane leftGrid = new GridPane();
         leftGrid.setPadding(new Insets(60));
         Button buttonFollowed = new Button("Accédez à mes follows");
@@ -80,12 +53,7 @@ public class HomePage extends BorderPane {
                 e1.printStackTrace();
             }
         });
-    }
-
-
-
-
-    public void handleButtonAction(String buttonLabel) throws SQLException {
+!!!133762.java!!!	handleButtonAction(in buttonLabel : String) : void
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
         if (buttonLabel=="Button Followed"){
@@ -101,39 +69,23 @@ public class HomePage extends BorderPane {
             displayAllMessagesFromDatabase(connexion);
             setCenter(chat(userId));
         }
-    }
-
-    public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException {
+!!!133890.java!!!	pageFollow(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur) : GridPane
         PageFollow pageFollow = new PageFollow(connexion, utilisateur,this);
         return pageFollow.executer();
-    }
-
-    public void setFollow() throws SQLException{
+!!!134018.java!!!	setFollow() : void
         setCenter(pageFollow(connexion, utilisateur));
-    }
-
-    public void setToFollow() throws SQLException{
+!!!134146.java!!!	setToFollow() : void
         setCenter(pageToFollow(connexion, utilisateur));
-    }
-
-    public void setHistoriqueMessage() throws SQLException{
+!!!134274.java!!!	setHistoriqueMessage() : void
         setCenter(pageHistoriqueMessage(connexion, utilisateur));
-    }
-
-    public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
+!!!134402.java!!!	pageToFollow(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur) : GridPane
         PageToFollow center = new PageToFollow(connexion, utilisateur,this);
         return center.executer();
-    }
-
-    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
+!!!134530.java!!!	pageHistoriqueMessage(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur) : GridPane
         HistoriqueMessage center = new HistoriqueMessage(connexion,utilisateur,this);
         return center.executer();
 
-    }
-
-
-
-    private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) throws SQLException {
+!!!134658.java!!!	displayAllMessagesFromDatabase(inout connexion : ConnexionMySQL) : void
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
 
         try {
@@ -159,24 +111,13 @@ public class HomePage extends BorderPane {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) throws SQLException{
+!!!134786.java!!!	sendMessageToDatabase(inout connexion : ConnexionMySQL, in message : String, in userId : int) : void
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
         this.messageBD.insererUtilisateur(userId, message);
-    }
-    
-
-
-
-    private void sendMessage(String message) {
+!!!134914.java!!!	sendMessage(in message : String) : void
         chatClient.sendMessage(message);
         updateMessageArea("You: " + message);
-    }
-
-
-
-    private void updateMessageArea(String message) {
+!!!135042.java!!!	updateMessageArea(in message : String) : void
         VBox messageBox = new VBox();
         messageBox.setSpacing(10);
         messageBox.setMaxWidth(USE_PREF_SIZE); 
@@ -200,9 +141,7 @@ public class HomePage extends BorderPane {
         messageAreaScrollPane.setPrefHeight(500); 
     
         messageAreaScrollPane.setVvalue(1.0);
-    }
-
-    private BorderPane chat(int userId) {
+!!!135170.java!!!	chat(in userId : int) : BorderPane
         BorderPane borderPane = new BorderPane();
 
         VBox messageContainer = new VBox();
@@ -237,9 +176,3 @@ public class HomePage extends BorderPane {
         borderPane.setCenter(chatBox);
 
         return borderPane;
-    }
-    
-
-}
-
-

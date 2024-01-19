@@ -1,0 +1,29 @@
+class ClientHandler
+!!!130818.java!!!	ClientHandler(inout socket : Socket, inout server : ChatServer)
+        this.socket = socket;
+        this.server = server;
+        try {
+            input = new DataInputStream(socket.getInputStream());
+            output = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+!!!130946.java!!!	run() : void
+        try {
+            while (true) {
+                String message = input.readUTF();
+                System.out.println("Received message: " + message);
+
+                // Broadcast the message to all connected clients
+                server.broadcast(message, this);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+!!!131074.java!!!	sendMessage(in message : String) : void
+        try {
+            output.writeUTF(message);
+            output.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }

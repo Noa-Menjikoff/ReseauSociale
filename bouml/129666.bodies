@@ -1,17 +1,5 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-
-public class FenetreAuth extends GridPane {
-    public TextField tf1;
-    public TextField tf3;
-    public PasswordField tf2;
-    public AppliReseau appli;
-
-    
-
-    
-    public  FenetreAuth(ConnexionMySQL connexionMySQL, AppliReseau appli) {
+class FenetreAuth
+!!!132610.java!!!	FenetreAuth(inout connexionMySQL : ConnexionMySQL, inout appli : AppliReseau)
         this.tf1 = new TextField();
         this.tf3 = new TextField();
         this.tf2 = new PasswordField();
@@ -41,18 +29,9 @@ public class FenetreAuth extends GridPane {
         ControleurInscription controleurInscription = new ControleurInscription(this.appli,this,connexionMySQL);
         registerButton.setOnAction(controleurInscription);
         this.getChildren().addAll(grid);
-    }
-
-    public String getTextField(){
+!!!132738.java!!!	getTextField() : String
         return this.tf1.getText();
-    }
-
-    public String getIp(){
+!!!132866.java!!!	getIp() : String
         return this.tf3.getText();
-    }
-
-    public String getPasswordField(){
+!!!132994.java!!!	getPasswordField() : String
         return this.tf2.getText();
-    }
-
-}

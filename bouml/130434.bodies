@@ -1,26 +1,9 @@
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
-
-public class PageFollow {
-    private ConnexionMySQL connexion;
-    private Utilisateur utilisateur;
-    private HomePage page;
-    
-    public PageFollow(ConnexionMySQL connexion, Utilisateur utilisateur,HomePage page) {
+class PageFollow
+!!!135682.java!!!	PageFollow(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur, inout page : HomePage)
         this.page = page;
         this.connexion = connexion;
         this.utilisateur = utilisateur;
-    }
-
-    public GridPane executer() throws SQLException{
+!!!135810.java!!!	executer() : GridPane
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
         
         GridPane center = new GridPane();
@@ -48,8 +31,7 @@ public class PageFollow {
         }
         center.add(vBox, 0, 0);
         return center;
-    }
-    private void desabonnerUtilisateur(int idSuivi) {
+!!!135938.java!!!	desabonnerUtilisateur(in idSuivi : int) : void
         String query = "DELETE FROM abonnements WHERE id_abonne = ? AND id_suivi = ?";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
             preparedStatement.setInt(1, utilisateur.getIdUtilisateur());
@@ -61,5 +43,3 @@ public class PageFollow {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-}

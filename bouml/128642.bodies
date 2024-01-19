@@ -1,0 +1,21 @@
+class ConnexionMySQL
+!!!131202.java!!!	ConnexionMySQL()
+        this.mysql = null;
+        this.connecte = false;
+!!!131330.java!!!	connecter(in nomServeur : String, in nomBase : String, in nomLogin : String, in motDePasse : String) : void
+        this.mysql = null;
+        this.connecte = false;
+        this.mysql = DriverManager.getConnection("jdbc:mariadb://" + nomServeur + ":3306/" + nomBase, nomLogin,
+                motDePasse);
+        this.connecte = this.mysql != null;
+!!!131458.java!!!	close() : void
+        this.mysql.close();
+        this.connecte = false;
+!!!131586.java!!!	isConnecte() : boolean
+        return this.connecte;
+!!!131714.java!!!	createStatement() : Statement
+        return this.mysql.createStatement();
+!!!131842.java!!!	prepareStatement(in requete : String) : PreparedStatement
+        return this.mysql.prepareStatement(requete);
+!!!131970.java!!!	getMySQLConnection() : Connection
+        return this.mysql;

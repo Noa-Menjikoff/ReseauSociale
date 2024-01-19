@@ -1,25 +1,9 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class HistoriqueMessage {
-    private ConnexionMySQL connexion;
-    private Utilisateur utilisateur;
-    private HomePage page;
-
-    public HistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur, HomePage page) {
+class HistoriqueMessage
+!!!133122.java!!!	HistoriqueMessage(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur, inout page : HomePage)
         this.connexion = connexion;
         this.page = page;
         this.utilisateur = utilisateur;
-    }
-
-    public GridPane executer() throws SQLException {
+!!!133250.java!!!	executer() : GridPane
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
         
         GridPane center = new GridPane();
@@ -45,9 +29,7 @@ public class HistoriqueMessage {
         }
         center.add(vBox, 0, 0);
         return center;
-    }
-
-    private void supprimerMessage(int idMessage) {
+!!!133378.java!!!	supprimerMessage(in idMessage : int) : void
         String query = "DELETE FROM messages WHERE id_message = ?";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
             preparedStatement.setInt(1, idMessage);
@@ -57,5 +39,3 @@ public class HistoriqueMessage {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-}

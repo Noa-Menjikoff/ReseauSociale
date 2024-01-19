@@ -1,26 +1,9 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class PageSuppUtilisateur {
-    private ConnexionMySQL connexion;
-    private Utilisateur utilisateur;
-    private Adm page;
-
-    public PageSuppUtilisateur(ConnexionMySQL connexion, Utilisateur utilisateur, Adm page) {
+class PageSuppUtilisateur
+!!!136450.java!!!	PageSuppUtilisateur(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur, inout page : Adm)
         this.connexion = connexion;
         this.utilisateur = utilisateur;
         this.page = page;
-    }
-
-    public GridPane executer() {
+!!!136578.java!!!	executer() : GridPane
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
 
@@ -58,10 +41,7 @@ public class PageSuppUtilisateur {
         center.add(vBox, 0, 0);
 
         return center;
-    }
-
-    // Fonction pour supprimer un utilisateur
-    private void supprimerUtilisateur(int idUtilisateur) {
+!!!136706.java!!!	supprimerUtilisateur(in idUtilisateur : int) : void
         String querySuppressionMessages = "DELETE FROM messages WHERE id_utilisateur = ?";
         String querySuppressionAbonnements = "DELETE FROM abonnements WHERE id_abonne = ? OR id_suivi = ?";
         String querySuppressionUtilisateur = "DELETE FROM utilisateurs WHERE id = ?";
@@ -90,6 +70,3 @@ public class PageSuppUtilisateur {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    
-}

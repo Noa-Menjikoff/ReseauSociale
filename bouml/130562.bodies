@@ -1,26 +1,9 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-public class PageSuppMessage {
-    private ConnexionMySQL connexion;
-    private Utilisateur utilisateur;
-    private Adm page;
-
-    public PageSuppMessage(ConnexionMySQL connexion, Utilisateur utilisateur, Adm page) {
+class PageSuppMessage
+!!!136066.java!!!	PageSuppMessage(inout connexion : ConnexionMySQL, inout utilisateur : Utilisateur, inout page : Adm)
         this.connexion = connexion;
         this.utilisateur = utilisateur;
         this.page = page;
-    }
-
-    public GridPane executer() {
+!!!136194.java!!!	executer() : GridPane
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
 
@@ -59,10 +42,7 @@ public class PageSuppMessage {
         center.add(vBox, 0, 0);
 
         return center;
-    }
-
-    // Fonction pour supprimer un message
-    private void supprimerMessage(int idMessage, int idUtilisateur) {
+!!!136322.java!!!	supprimerMessage(in idMessage : int, in idUtilisateur : int) : void
         String querySuppressionMessage = "DELETE FROM messages WHERE id_message = ?";
 
         try (PreparedStatement pstmtMessage = connexion.prepareStatement(querySuppressionMessage)) {
@@ -75,5 +55,3 @@ public class PageSuppMessage {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-}
