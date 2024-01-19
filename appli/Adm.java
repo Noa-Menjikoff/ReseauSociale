@@ -2,9 +2,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 import java.sql.SQLException;
-
 import javafx.geometry.Insets;
 
 public class Adm extends BorderPane {
@@ -24,16 +22,12 @@ public class Adm extends BorderPane {
     private void executer(){
         GridPane leftGrid = new GridPane();
         leftGrid.setPadding(new Insets(60));
-
         Button buttonSuppUser = new Button("Supprimer un utilisateur");
         Button buttonSuppMess = new Button("Supprimer un message");
         leftGrid.add(buttonSuppUser, 0, 0);
         leftGrid.add(buttonSuppMess, 0, 1);
         setLeft(leftGrid);
-
-        GridPane centerGrid = new GridPane();
         setCenter(messageArea);
-
         buttonSuppUser.setOnAction(e -> {
             try {
                 handleButtonAction("Button Supprimer Utilisateur");

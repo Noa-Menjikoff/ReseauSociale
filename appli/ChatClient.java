@@ -10,7 +10,6 @@ public class ChatClient {
     private DataOutputStream output;
     private Consumer<String> messageCallback;
 
-
     public ChatClient(String serverAddress, int serverPort) {
         try {
             socket = new Socket(serverAddress, serverPort);
@@ -21,7 +20,6 @@ public class ChatClient {
             e.printStackTrace();
         }
     }
-
 
     public void setMessageCallback(Consumer<String> callback) {
         this.messageCallback = callback;
@@ -55,7 +53,6 @@ public class ChatClient {
     public static void main(String[] args) {
         String serverAddress = "localhost"; // Change to the server address
         int serverPort = 5555; // Change to the server port
-        ChatClient client = new ChatClient(serverAddress, serverPort);
-        // Example: client.sendMessage("Hello, server!");
+        new ChatClient(serverAddress, serverPort);
     }
 }

@@ -1,9 +1,5 @@
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 
 public class MessageBD {
 	ConnexionMySQL laConnexion;

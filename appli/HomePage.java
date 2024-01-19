@@ -2,25 +2,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
-
-import java.beans.Statement;
-import java.net.InetAddress;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public class HomePage extends BorderPane {
     private Utilisateur utilisateur;
@@ -30,7 +21,6 @@ public class HomePage extends BorderPane {
     private ChatClient chatClient; 
     private ConnexionMySQL connexion;
     private int userId;
-    private java.sql.Statement st;
     private MessageBD messageBD;
 
   
@@ -61,13 +51,7 @@ public class HomePage extends BorderPane {
         leftGrid.add(button3, 0, 2);
         leftGrid.add(button4, 0, 3);
         setLeft(leftGrid);
-
-
-        GridPane centerGrid = new GridPane();
         setCenter(messageArea);
-
-
-
         buttonFollowed.setOnAction(e -> {
             try {
                 handleButtonAction("Button Followed");
@@ -162,7 +146,6 @@ public class HomePage extends BorderPane {
                 ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    int idUtilisateur = resultSet.getInt("id_utilisateur");
                     String nomUtilisateur = resultSet.getString("nom_utilisateur");
                     String contenu = resultSet.getString("contenu");
                     String dateHeure = resultSet.getString("date_heure");
