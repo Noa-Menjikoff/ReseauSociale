@@ -14,9 +14,10 @@ import java.util.List;
 public class PageToFollow {
     private ConnexionMySQL connexion;
     private Utilisateur utilisateur;
-
-    public PageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
+    private HomePage page;
+    public PageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur,HomePage page) {
         this.connexion = connexion;
+        this.page = page;
         this.utilisateur = utilisateur;
     }
 
@@ -92,6 +93,7 @@ public class PageToFollow {
             preparedStatement.setInt(2, idSuivi);
             preparedStatement.executeUpdate();
             System.out.println("S'abonner à l'utilisateur avec l'ID : " + idSuivi);
+            page.setToFollow();
         } catch (SQLException e) {
             e.printStackTrace();
         }

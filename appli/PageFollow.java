@@ -13,8 +13,10 @@ import javafx.scene.control.Button;
 public class PageFollow {
     private ConnexionMySQL connexion;
     private Utilisateur utilisateur;
+    private HomePage page;
     
-    public PageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
+    public PageFollow(ConnexionMySQL connexion, Utilisateur utilisateur,HomePage page) {
+        this.page = page;
         this.connexion = connexion;
         this.utilisateur = utilisateur;
     }
@@ -78,6 +80,8 @@ public class PageFollow {
             preparedStatement.setInt(2, idSuivi);
             preparedStatement.executeUpdate();
             System.out.println("Se désabonner de l'utilisateur avec l'ID : " + idSuivi);
+            this.executer();
+            page.setFollow();
         } catch (SQLException e) {
             e.printStackTrace();
         }

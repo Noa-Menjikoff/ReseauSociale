@@ -36,7 +36,7 @@ public class HomePage extends BorderPane {
         Button buttonFollowed = new Button("Accédez à mes follows");
         Button buttonMessage = new Button("Accédez à mes discussions");
         Button button3 = new Button("Cherchez des contacts");
-        Button button4 = new Button("4");
+        Button button4 = new Button("Afficher mon historique");
         Button button5 = new Button("5");
 
         leftGrid.add(buttonFollowed, 0, 0);
@@ -55,7 +55,7 @@ public class HomePage extends BorderPane {
         buttonFollowed.setOnAction(e -> handleButtonAction("Button Followed"));
         buttonMessage.setOnAction(e -> handleButtonAction("Button Message"));
         button3.setOnAction(e -> handleButtonAction("Button Contact"));
-        button4.setOnAction(e -> handleButtonAction("Button 4"));
+        button4.setOnAction(e -> handleButtonAction("Button Historique de message"));
         button5.setOnAction(e -> handleButtonAction("Button 5"));
     }
 
@@ -69,15 +69,35 @@ public class HomePage extends BorderPane {
         else if (buttonLabel=="Button Contact"){
             setCenter(pageToFollow(this.connexion, utilisateur));
         }
+        else if (buttonLabel=="Button Historique de message"){
+            setCenter(pageHistoriqueMessage(connexion, utilisateur));
+        }
     }
 
     public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
-        PageFollow pageFollow = new PageFollow(connexion, utilisateur);
+        PageFollow pageFollow = new PageFollow(connexion, utilisateur,this);
         return pageFollow.executer();
     }
 
+    public void setFollow(){
+        setCenter(pageFollow(connexion, utilisateur));
+    }
+
+    public void setToFollow(){
+        setCenter(pageToFollow(connexion, utilisateur));
+    }
+
+    public void setHistoriqueMessage(){
+        setCenter(pageHistoriqueMessage(connexion, utilisateur));
+    }
+
     public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur){
-        PageToFollow center = new PageToFollow(connexion, utilisateur);
+        PageToFollow center = new PageToFollow(connexion, utilisateur,this);
+        return center.executer();
+    }
+
+    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur){
+        HistoriqueMessage center = new HistoriqueMessage(connexion,utilisateur,this);
         return center.executer();
     }
 }
