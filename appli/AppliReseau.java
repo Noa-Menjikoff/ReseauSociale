@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +45,7 @@ public class AppliReseau extends Application{
 
     }
 
-    public void afficheFenetreAcceuil(){
+    public void afficheFenetreAcceuil() throws SQLException{
         Pane root = new HomePage(this.laConnexion,this);
         this.scene.setRoot(root);
     }

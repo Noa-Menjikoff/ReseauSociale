@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
+
+import java.beans.Statement;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,8 +24,11 @@ public class HomePage extends BorderPane {
     private ChatClient chatClient; 
     private ConnexionMySQL connexion;
     private int userId;
+    private java.sql.Statement st;
+    private MessageBD messageBD;
 
     public HomePage(ConnexionMySQL connexion, AppliReseau appli) {
+        this.messageBD = new MessageBD(connexion);
         this.userId = 1;
         this.connexion = connexion;
         this.appli = appli;
@@ -31,7 +36,6 @@ public class HomePage extends BorderPane {
         chatClient = new ChatClient("192.168.28.82", 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
 
-        // Left side with buttons
         GridPane leftGrid = new GridPane();
         leftGrid.setPadding(new Insets(60));
 
@@ -50,11 +54,9 @@ public class HomePage extends BorderPane {
 
         setLeft(leftGrid);
 
-        // Center for content (initially empty)
         GridPane centerGrid = new GridPane();
         setCenter(messageArea);
 
-        // Event handling
         buttonFollowed.setOnAction(e -> handleButtonAction("Button Followed"));
         buttonMessage.setOnAction(e -> handleButtonAction("Button Message"));
         button3.setOnAction(e -> handleButtonAction("Button 3"));
@@ -64,7 +66,6 @@ public class HomePage extends BorderPane {
 
     private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) {
         try {
-            // Assurez-vous d'adapter cette requête selon votre schéma de base de données
             String query = "SELECT messages.id_utilisateur, messages.contenu, messages.date_heure, utilisateurs.nom_utilisateur " +
                            "FROM messages " +
                            "JOIN utilisateurs ON messages.id_utilisateur = utilisateurs.id";
@@ -74,13 +75,11 @@ public class HomePage extends BorderPane {
                  ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
-                    // Récupérer les informations du message depuis le résultat
                     int idUtilisateur = resultSet.getInt("id_utilisateur");
                     String nomUtilisateur = resultSet.getString("nom_utilisateur");
                     String contenu = resultSet.getString("contenu");
                     String dateHeure = resultSet.getString("date_heure");
 
-                    // Formater le message et l'ajouter à la zone de texte
                     String formattedMessage = String.format("%s (%s): %s", nomUtilisateur, dateHeure, contenu);
                     updateMessageArea(formattedMessage);
                 }
@@ -90,13 +89,13 @@ public class HomePage extends BorderPane {
         }
     }
 
-    private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) {
-        
+    private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) throws SQLException{
+        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
+        this.messageBD.insererUtilisateur(userId, message);
     }
     
 
     private void handleButtonAction(String buttonLabel) {
-        // Replace the content in the center based on the clicked button
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
         newContent.add(new Button("New Content for " + buttonLabel), 0, 0);
@@ -107,48 +106,40 @@ public class HomePage extends BorderPane {
     }
 
     private void sendMessage(String message) {
-        // Send the message to the server using the ChatClient
         chatClient.sendMessage(message);
-        // Update the UI to display the sent message
         updateMessageArea("You: " + message);
     }
     private void updateMessageArea(String message) {
-        // Update the UI to display the received message
         messageArea.appendText(message + "\n");
     }
 
     private BorderPane chat(int userId) {
         BorderPane borderPane = new BorderPane();
     
-        // Text area for displaying messages
         messageArea.setEditable(false);
     
-        // Text area for input
         TextArea inputArea = new TextArea();
         inputArea.setPromptText("Type your message here...");
     
-        // Send button
         Button sendButton = new Button("Send");
         sendButton.setOnAction(e -> {
             String message = inputArea.getText().trim();
             if (!message.isEmpty()) {
-                // Send the message to the server using the ChatClient
-                sendMessageToDatabase(connexion, message, userId); 
+                try {
+                    sendMessageToDatabase(connexion, message, userId);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                } 
                 sendMessage(message);
-                // Update the UI to display the sent message
                 updateMessageArea("You: " + message);
-                // Clear the input area
                 inputArea.clear();
             }
         });
     
-        // HBox for input and send button
         HBox inputBox = new HBox(inputArea, sendButton);
     
-        // VBox to hold the message area and input box
         VBox chatBox = new VBox(messageArea, inputBox);
     
-        // Set the VBox to the center of the BorderPane
         borderPane.setCenter(chatBox);
     
         return borderPane;
