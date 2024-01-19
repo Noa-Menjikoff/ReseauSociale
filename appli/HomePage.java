@@ -69,14 +69,11 @@ public class HomePage extends BorderPane {
         setCenter(messageArea);
 
 
-        // GridPane centerGrid = new GridPane();
-        // setCenter(centerGrid);
 
         buttonFollowed.setOnAction(e -> {
             try {
                 handleButtonAction("Button Followed");
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });
@@ -84,7 +81,6 @@ public class HomePage extends BorderPane {
             try {
                 handleButtonAction("Button Message");
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });
@@ -92,7 +88,6 @@ public class HomePage extends BorderPane {
             try {
                 handleButtonAction("Button Contact");
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });
@@ -100,7 +95,6 @@ public class HomePage extends BorderPane {
             try {
                 handleButtonAction("Button Historique de message");
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });
@@ -108,7 +102,6 @@ public class HomePage extends BorderPane {
             try {
                 handleButtonAction("Button 5");
             } catch (SQLException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         });
@@ -206,53 +199,42 @@ public class HomePage extends BorderPane {
         chatClient.sendMessage(message);
         updateMessageArea("You: " + message);
     }
-    // private void updateMessageArea(String message) {
-    //     messageArea.appendText(message + "\n");
-    // }
+
 
 
     private void updateMessageArea(String message) {
-        // Create a new VBox for each message
         VBox messageBox = new VBox();
         messageBox.setSpacing(10);
-        messageBox.setMaxWidth(USE_PREF_SIZE); // Set max width to USE_PREF_SIZE
+        messageBox.setMaxWidth(USE_PREF_SIZE); 
     
-        // Create a Label to display the message content
         Label messageLabel = new Label(message);
     
-        // Create an HBox to contain the Label
         HBox hbox = new HBox(messageLabel);
-        hbox.setMaxWidth(USE_PREF_SIZE); // Set max width to USE_PREF_SIZE
+        hbox.setMaxWidth(USE_PREF_SIZE); 
         hbox.setPadding(new Insets(5));
         hbox.setStyle("-fx-border-color: black; -fx-border-width: 1;-fx-border-radius:5px;");
     
         messageBox.getChildren().add(hbox);
     
-        // Create a Button for the "Like" functionality
         Button likeButton = new Button("Like");
         messageBox.getChildren().add(likeButton);
     
-        // Add the messageBox to the overall layout
         messageArea.getChildren().add(messageBox);
         messageArea.setPrefHeight(500);
     
-        // Create a ScrollPane with a fixed height
         ScrollPane messageAreaScrollPane = new ScrollPane(messageArea);
-        messageAreaScrollPane.setPrefHeight(500); // Set your desired fixed height
+        messageAreaScrollPane.setPrefHeight(500); 
     
-        // Scroll to the bottom of the scroll pane
         messageAreaScrollPane.setVvalue(1.0);
     }
 
     private BorderPane chat(int userId) {
         BorderPane borderPane = new BorderPane();
 
-        // Use VBox instead of TextArea to hold multiple messages
         VBox messageContainer = new VBox();
         messageContainer.setSpacing(10);
-        messageArea = messageContainer; // Change this line
+        messageArea = messageContainer; 
 
-        // Create a ScrollPane to contain the messageContainer
         ScrollPane messageAreaScrollPane = new ScrollPane(messageContainer);
         messageAreaScrollPane.setFitToHeight(true);
         messageAreaScrollPane.setFitToWidth(true);
