@@ -31,17 +31,17 @@ public class HomePage extends BorderPane {
     private MessageBD messageBD;
 
   
-    public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur) {
+    public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur, String ip) {
         this.appli = appli;
         this.utilisateur = utilisateur;
         this.connexion = connexion;
         this.executer();
         this.messageBD = new MessageBD(connexion);
-        this.userId = 1;
+        this.userId = utilisateur.getIdUtilisateur();
         this.connexion = connexion;
         this.appli = appli;
         messageArea = new TextArea();
-        chatClient = new ChatClient("192.168.28.82", 5555);
+        chatClient = new ChatClient(ip, 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
     }
 

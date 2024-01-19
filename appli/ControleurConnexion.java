@@ -22,14 +22,14 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
             UtilisateurBD ubd = new UtilisateurBD(this.connex);
             Utilisateur utilisateur = ubd.connecterUtilisateur(connexion.getTextField(),connexion.getPasswordField());
             int nj = ubd.getRowCount();
-            if (nj==1){
+            if (nj==1 && connexion.getIp() != ""){
                 if("adm".equals(connexion.getTextField()) && "adm".equals(connexion.getPasswordField())){
                     System.err.println("connection réussi"); 
-                    this.appli.afficheFenetreAdm(utilisateur);
+                    this.appli.afficheFenetreAdm(utilisateur,connexion.getIp());
                 }
                 else{
                     System.err.println("connection réussi"); 
-                    this.appli.afficheFenetreAcceuil(utilisateur);
+                    this.appli.afficheFenetreAcceuil(utilisateur,connexion.getIp());
                 }
 
             }
