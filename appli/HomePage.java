@@ -28,7 +28,7 @@ public class HomePage extends BorderPane {
         this.connexion = connexion;
         this.appli = appli;
         messageArea = new TextArea();
-        chatClient = new ChatClient("192.168.13.75", 5555);
+        chatClient = new ChatClient("192.168.28.82", 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
 
         // Left side with buttons
@@ -91,24 +91,9 @@ public class HomePage extends BorderPane {
     }
 
     private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) {
-        try {
-            // Assurez-vous d'adapter cette requête selon votre schéma de base de données
-            String query = "INSERT INTO messages (id_utilisateur, contenu, date_heure) VALUES (?, ?, ?)";
-
-            try (Connection dbConnection = connexion.getMySQLConnection();
-                 PreparedStatement preparedStatement = dbConnection.prepareStatement(query)) {
-
-                preparedStatement.setInt(1, userId);
-                preparedStatement.setString(2, message);
-                preparedStatement.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
-
-                // Exécution de la requête d'insertion
-                preparedStatement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        
     }
+    
 
     private void handleButtonAction(String buttonLabel) {
         // Replace the content in the center based on the clicked button
