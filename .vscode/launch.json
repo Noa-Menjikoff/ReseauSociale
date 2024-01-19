@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ChatServer",
+            "request": "launch",
+            "mainClass": "ChatServer",
+            "projectName": "ReseauSociale_32c34b93"
+        },
+        {
+            "type": "java",
             "name": "ChatClient",
             "request": "launch",
             "mainClass": "ChatClient",

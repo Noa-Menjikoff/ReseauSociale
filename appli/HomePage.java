@@ -29,7 +29,6 @@ public class HomePage extends BorderPane {
     private int userId;
     private java.sql.Statement st;
     private MessageBD messageBD;
-    private ConnexionMySQL connexion;
 
   
     public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur) {
@@ -67,8 +66,8 @@ public class HomePage extends BorderPane {
         setCenter(messageArea);
 
 
-        GridPane centerGrid = new GridPane();
-        setCenter(centerGrid);
+        // GridPane centerGrid = new GridPane();
+        // setCenter(centerGrid);
 
         buttonFollowed.setOnAction(e -> handleButtonAction("Button Followed"));
         buttonMessage.setOnAction(e -> handleButtonAction("Button Message"));
@@ -109,15 +108,7 @@ public class HomePage extends BorderPane {
     }
     
 
-    private void handleButtonAction(String buttonLabel) {
-        GridPane newContent = new GridPane();
-        newContent.setPadding(new Insets(10));
-        newContent.add(new Button("New Content for " + buttonLabel), 0, 0);
-        if (buttonLabel == "Button Message"){
-            displayAllMessagesFromDatabase(connexion);
-            setCenter(chat(userId));
-        }
-    }
+
 
     private void sendMessage(String message) {
         chatClient.sendMessage(message);
@@ -125,6 +116,7 @@ public class HomePage extends BorderPane {
     }
     private void updateMessageArea(String message) {
         messageArea.appendText(message + "\n");
+    }
 
     public void handleButtonAction(String buttonLabel) {
         GridPane newContent = new GridPane();
@@ -137,6 +129,10 @@ public class HomePage extends BorderPane {
         }
         else if (buttonLabel=="Button Historique de message"){
             setCenter(pageHistoriqueMessage(connexion, utilisateur));
+        }
+        else if (buttonLabel == "Button Message"){
+            displayAllMessagesFromDatabase(connexion);
+            setCenter(chat(userId));
         }
     }
 
