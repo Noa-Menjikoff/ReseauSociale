@@ -72,12 +72,20 @@ public class HomePage extends BorderPane {
     }
 
     public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
-        PageFollow pageFollow = new PageFollow(connexion, utilisateur);
+        PageFollow pageFollow = new PageFollow(connexion, utilisateur,this);
         return pageFollow.executer();
     }
 
+    public void setFollow(){
+        setCenter(pageFollow(connexion, utilisateur));
+    }
+
+    public void setToFollow(){
+        setCenter(pageToFollow(connexion, utilisateur));
+    }
+
     public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur){
-        PageToFollow center = new PageToFollow(connexion, utilisateur);
+        PageToFollow center = new PageToFollow(connexion, utilisateur,this);
         return center.executer();
     }
 }
