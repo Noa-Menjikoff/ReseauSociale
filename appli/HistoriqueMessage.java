@@ -4,7 +4,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,54 +22,35 @@ public class HistoriqueMessage {
     public GridPane executer() {
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
-
         VBox vBox = new VBox();
         vBox.setSpacing(10);
-
-        // Récupérer l'historique des messages de l'utilisateur depuis la base de données
         String query = "SELECT id_message, contenu FROM messages WHERE id_utilisateur = ?";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
             preparedStatement.setInt(1, utilisateur.getIdUtilisateur());
             ResultSet resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
                 int idMessage = resultSet.getInt("id_message");
                 String contenuMessage = resultSet.getString("contenu");
-
-                // Créer un label avec le contenu du message
                 Label labelMessage = new Label(contenuMessage);
-
-                // Créer un bouton de suppression pour chaque message
                 Button buttonSupprimer = new Button("Supprimer");
                 buttonSupprimer.setOnAction(e -> supprimerMessage(idMessage));
-
-                // Ajouter le label et le bouton à un HBox
                 HBox hBox = new HBox(labelMessage, buttonSupprimer);
                 hBox.setSpacing(10);
-
-                // Ajouter le HBox à la VBox
                 vBox.getChildren().add(hBox);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Ajouter la VBox au centre de la grille
         center.add(vBox, 0, 0);
-
         return center;
     }
 
-    // Fonction pour supprimer un message de l'utilisateur
     private void supprimerMessage(int idMessage) {
-        // Logique pour supprimer le message avec l'id donné
         String query = "DELETE FROM messages WHERE id_message = ?";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
             preparedStatement.setInt(1, idMessage);
             preparedStatement.executeUpdate();
             System.out.println("Message supprimé avec l'ID : " + idMessage);
-
-            // Actualiser la page après la suppression
             page.setHistoriqueMessage();
         } catch (SQLException e) {
             e.printStackTrace();
