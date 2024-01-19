@@ -24,8 +24,8 @@ public class ControleurInscription implements EventHandler<ActionEvent> {
             UtilisateurBD ubd = new UtilisateurBD(this.connex);
             Utilisateur utilisateur = ubd.insererUtilisateur(util);
             int nj = utilisateur.getIdUtilisateur();
-            if (nj == ubd.maxNumUtil()){
-                this.appli.afficheFenetreAcceuil(utilisateur);
+            if (nj == ubd.maxNumUtil() && inscription.getIp() != ""){
+                this.appli.afficheFenetreAcceuil(utilisateur,inscription.getIp());
             }
         } catch (SQLException e) {
             Alert alert = new Alert(AlertType.ERROR);

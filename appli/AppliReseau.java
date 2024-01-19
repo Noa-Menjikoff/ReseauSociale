@@ -42,11 +42,11 @@ public class AppliReseau extends Application{
 
 
 
-    public void afficheFenetreAcceuil(Utilisateur utilisateurConnecte) {
-        Pane root = new HomePage(this.laConnexion, this, utilisateurConnecte);
+    public void afficheFenetreAcceuil(Utilisateur utilisateurConnecte,String ip) {
+        Pane root = new HomePage(this.laConnexion, this, utilisateurConnecte,ip);
         this.scene.setRoot(root);
     }
-    public void afficheFenetreAdm(Utilisateur utilisateurConnecte) {
+    public void afficheFenetreAdm(Utilisateur utilisateurConnecte,String ip) {
         Pane root = new Adm(this.laConnexion, this, utilisateurConnecte);
         this.scene.setRoot(root);
     }
