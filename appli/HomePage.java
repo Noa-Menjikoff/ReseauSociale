@@ -69,15 +69,52 @@ public class HomePage extends BorderPane {
         // GridPane centerGrid = new GridPane();
         // setCenter(centerGrid);
 
-        buttonFollowed.setOnAction(e -> handleButtonAction("Button Followed"));
-        buttonMessage.setOnAction(e -> handleButtonAction("Button Message"));
-        button3.setOnAction(e -> handleButtonAction("Button Contact"));
-        button4.setOnAction(e -> handleButtonAction("Button Historique de message"));
-        button5.setOnAction(e -> handleButtonAction("Button 5"));
+        buttonFollowed.setOnAction(e -> {
+            try {
+                handleButtonAction("Button Followed");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        buttonMessage.setOnAction(e -> {
+            try {
+                handleButtonAction("Button Message");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        button3.setOnAction(e -> {
+            try {
+                handleButtonAction("Button Contact");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        button4.setOnAction(e -> {
+            try {
+                handleButtonAction("Button Historique de message");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
+        button5.setOnAction(e -> {
+            try {
+                handleButtonAction("Button 5");
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        });
     }
 
 
-    private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) {
+    private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) throws SQLException {
+        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
+        
         try {
             String query = "SELECT messages.id_utilisateur, messages.contenu, messages.date_heure, utilisateurs.nom_utilisateur " +
                            "FROM messages " +
@@ -118,7 +155,7 @@ public class HomePage extends BorderPane {
         messageArea.appendText(message + "\n");
     }
 
-    public void handleButtonAction(String buttonLabel) {
+    public void handleButtonAction(String buttonLabel) throws SQLException {
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
         if (buttonLabel=="Button Followed"){
@@ -136,29 +173,29 @@ public class HomePage extends BorderPane {
         }
     }
 
-    public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) {
+    public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException {
         PageFollow pageFollow = new PageFollow(connexion, utilisateur,this);
         return pageFollow.executer();
     }
 
-    public void setFollow(){
+    public void setFollow() throws SQLException{
         setCenter(pageFollow(connexion, utilisateur));
     }
 
-    public void setToFollow(){
+    public void setToFollow() throws SQLException{
         setCenter(pageToFollow(connexion, utilisateur));
     }
 
-    public void setHistoriqueMessage(){
+    public void setHistoriqueMessage() throws SQLException{
         setCenter(pageHistoriqueMessage(connexion, utilisateur));
     }
 
-    public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur){
+    public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
         PageToFollow center = new PageToFollow(connexion, utilisateur,this);
         return center.executer();
     }
 
-    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur){
+    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
         HistoriqueMessage center = new HistoriqueMessage(connexion,utilisateur,this);
         return center.executer();
 

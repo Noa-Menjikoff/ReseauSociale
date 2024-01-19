@@ -20,7 +20,9 @@ public class PageFollow {
         this.utilisateur = utilisateur;
     }
 
-    public GridPane executer(){
+    public GridPane executer() throws SQLException{
+        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
+        
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
         VBox vBox = new VBox();
