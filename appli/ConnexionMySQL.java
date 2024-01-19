@@ -1,11 +1,8 @@
 
-
 import java.sql.*;
 
 public class ConnexionMySQL {
-
 	private Connection mysql=null;
-
 	private boolean connecte=false;
 
 	public ConnexionMySQL() throws ClassNotFoundException{
@@ -18,16 +15,17 @@ public class ConnexionMySQL {
 		this.connecte = false;
 		this.mysql = DriverManager.getConnection("jdbc:mariadb://"+nomServeur+":3306/"+nomBase,nomLogin,motDePasse);
 		this.connecte=this.mysql!=null;
-
 	}
 
 	public void close() throws SQLException {
 		this.mysql.close();
 		this.connecte=false;
-
 	}
 
-    	public boolean isConnecte() { return this.connecte;}
+    public boolean isConnecte() { 
+		return this.connecte;
+	}
+	
 	public Statement createStatement() throws SQLException {
 		return this.mysql.createStatement();
 
@@ -35,7 +33,6 @@ public class ConnexionMySQL {
 
 	public PreparedStatement prepareStatement(String requete) throws SQLException{
 		return this.mysql.prepareStatement(requete);
-
 	}
 
 }	

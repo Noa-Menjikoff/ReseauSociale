@@ -1,11 +1,6 @@
-import java.util.List;
-import java.util.Map;
-
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -15,10 +10,6 @@ public class AppliReseau extends Application{
     private Scene scene;
     private ConnexionMySQL laConnexion;
 
- 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(AppliReseau.class, args);
     }

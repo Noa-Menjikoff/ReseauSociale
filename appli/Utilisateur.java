@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.InputStream;
-import java.nio.file.Files;
 
 public class Utilisateur {
     private String pseudo;
