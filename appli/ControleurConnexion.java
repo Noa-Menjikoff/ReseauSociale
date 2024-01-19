@@ -23,8 +23,15 @@ public class ControleurConnexion implements EventHandler<ActionEvent> {
             Utilisateur utilisateur = ubd.connecterUtilisateur(connexion.getTextField(),connexion.getPasswordField());
             int nj = ubd.getRowCount();
             if (nj==1){
-                System.err.println("connection réussi"); 
-                this.appli.afficheFenetreAcceuil(utilisateur);
+                if("adm".equals(connexion.getTextField()) && "adm".equals(connexion.getPasswordField())){
+                    System.err.println("connection réussi"); 
+                    this.appli.afficheFenetreAdm(utilisateur);
+                }
+                else{
+                    System.err.println("connection réussi"); 
+                    this.appli.afficheFenetreAcceuil(utilisateur);
+                }
+
             }
             else{
                 Alert alert = new Alert(AlertType.ERROR);

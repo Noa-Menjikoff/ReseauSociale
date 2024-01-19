@@ -38,7 +38,10 @@ public class AppliReseau extends Application{
         Pane root = new HomePage(this.laConnexion, this, utilisateurConnecte);
         this.scene.setRoot(root);
     }
-    
+    public void afficheFenetreAdm(Utilisateur utilisateurConnecte) {
+        Pane root = new Adm(this.laConnexion, this, utilisateurConnecte);
+        this.scene.setRoot(root);
+    }
 
 
 }
