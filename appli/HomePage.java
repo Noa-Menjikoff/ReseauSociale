@@ -1,12 +1,15 @@
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 
 import java.beans.Statement;
@@ -23,7 +26,7 @@ public class HomePage extends BorderPane {
     private Utilisateur utilisateur;
     private AppliReseau appli;
 
-    private TextArea messageArea;
+    private VBox messageArea;
     private ChatClient chatClient; 
     private ConnexionMySQL connexion;
     private int userId;
@@ -40,7 +43,7 @@ public class HomePage extends BorderPane {
         this.userId = utilisateur.getIdUtilisateur();
         this.connexion = connexion;
         this.appli = appli;
-        messageArea = new TextArea();
+        messageArea = new VBox();
         chatClient = new ChatClient(ip, 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
     }
@@ -112,48 +115,7 @@ public class HomePage extends BorderPane {
     }
 
 
-    private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) throws SQLException {
-        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
-        
-        try {
-            String query = "SELECT messages.id_utilisateur, messages.contenu, messages.date_heure, utilisateurs.nom_utilisateur " +
-                           "FROM messages " +
-                           "JOIN utilisateurs ON messages.id_utilisateur = utilisateurs.id";
 
-            try (Connection dbConnection = connexion.getMySQLConnection();
-                 PreparedStatement preparedStatement = dbConnection.prepareStatement(query);
-                 ResultSet resultSet = preparedStatement.executeQuery()) {
-
-                while (resultSet.next()) {
-                    int idUtilisateur = resultSet.getInt("id_utilisateur");
-                    String nomUtilisateur = resultSet.getString("nom_utilisateur");
-                    String contenu = resultSet.getString("contenu");
-                    String dateHeure = resultSet.getString("date_heure");
-
-                    String formattedMessage = String.format("%s (%s): %s", nomUtilisateur, dateHeure, contenu);
-                    updateMessageArea(formattedMessage);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) throws SQLException{
-        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
-        this.messageBD.insererUtilisateur(userId, message);
-    }
-    
-
-
-
-    private void sendMessage(String message) {
-        chatClient.sendMessage(message);
-        updateMessageArea("You: " + message);
-    }
-    private void updateMessageArea(String message) {
-        messageArea.appendText(message + "\n");
-    }
 
     public void handleButtonAction(String buttonLabel) throws SQLException {
         GridPane newContent = new GridPane();
@@ -201,14 +163,104 @@ public class HomePage extends BorderPane {
 
     }
 
+
+
+    private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) throws SQLException {
+        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
+
+        try {
+            String query = "SELECT messages.id_utilisateur, messages.contenu, messages.date_heure, utilisateurs.nom_utilisateur " +
+                            "FROM messages " +
+                            "JOIN utilisateurs ON messages.id_utilisateur = utilisateurs.id";
+
+            try (Connection dbConnection = connexion.getMySQLConnection();
+                PreparedStatement preparedStatement = dbConnection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                while (resultSet.next()) {
+                    int idUtilisateur = resultSet.getInt("id_utilisateur");
+                    String nomUtilisateur = resultSet.getString("nom_utilisateur");
+                    String contenu = resultSet.getString("contenu");
+                    String dateHeure = resultSet.getString("date_heure");
+
+                    String formattedMessage = String.format("%s (%s): %s", nomUtilisateur, dateHeure, contenu);
+
+                    // Update UI on the JavaFX Application Thread
+                    Platform.runLater(() -> updateMessageArea(formattedMessage));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMessageToDatabase(ConnexionMySQL connexion, String message, int userId) throws SQLException{
+        connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
+        this.messageBD.insererUtilisateur(userId, message);
+    }
+    
+
+
+
+    private void sendMessage(String message) {
+        chatClient.sendMessage(message);
+        updateMessageArea("You: " + message);
+    }
+    // private void updateMessageArea(String message) {
+    //     messageArea.appendText(message + "\n");
+    // }
+
+
+    private void updateMessageArea(String message) {
+        // Create a new VBox for each message
+        VBox messageBox = new VBox();
+        messageBox.setSpacing(10);
+        messageBox.setMaxWidth(USE_PREF_SIZE); // Set max width to USE_PREF_SIZE
+    
+        // Create a Label to display the message content
+        Label messageLabel = new Label(message);
+    
+        // Create an HBox to contain the Label
+        HBox hbox = new HBox(messageLabel);
+        hbox.setMaxWidth(USE_PREF_SIZE); // Set max width to USE_PREF_SIZE
+        hbox.setPadding(new Insets(5));
+        hbox.setStyle("-fx-border-color: black; -fx-border-width: 1;-fx-border-radius:5px;");
+    
+        messageBox.getChildren().add(hbox);
+    
+        // Create a Button for the "Like" functionality
+        Button likeButton = new Button("Like");
+        messageBox.getChildren().add(likeButton);
+    
+        // Add the messageBox to the overall layout
+        messageArea.getChildren().add(messageBox);
+        messageArea.setPrefHeight(500);
+    
+        // Create a ScrollPane with a fixed height
+        ScrollPane messageAreaScrollPane = new ScrollPane(messageArea);
+        messageAreaScrollPane.setPrefHeight(500); // Set your desired fixed height
+    
+        // Scroll to the bottom of the scroll pane
+        messageAreaScrollPane.setVvalue(1.0);
+    }
+
     private BorderPane chat(int userId) {
         BorderPane borderPane = new BorderPane();
-    
-        messageArea.setEditable(false);
-    
+
+        // Use VBox instead of TextArea to hold multiple messages
+        VBox messageContainer = new VBox();
+        messageContainer.setSpacing(10);
+        messageArea = messageContainer; // Change this line
+
+        // Create a ScrollPane to contain the messageContainer
+        ScrollPane messageAreaScrollPane = new ScrollPane(messageContainer);
+        messageAreaScrollPane.setFitToHeight(true);
+        messageAreaScrollPane.setFitToWidth(true);
+        messageAreaScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
         TextArea inputArea = new TextArea();
         inputArea.setPromptText("Type your message here...");
-    
+
         Button sendButton = new Button("Send");
         sendButton.setOnAction(e -> {
             String message = inputArea.getText().trim();
@@ -217,19 +269,17 @@ public class HomePage extends BorderPane {
                     sendMessageToDatabase(connexion, message, userId);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
-                } 
+                }
                 sendMessage(message);
-                updateMessageArea("You: " + message);
                 inputArea.clear();
             }
         });
-    
+
         HBox inputBox = new HBox(inputArea, sendButton);
-    
-        VBox chatBox = new VBox(messageArea, inputBox);
-    
+
+        VBox chatBox = new VBox(messageAreaScrollPane, inputBox);
         borderPane.setCenter(chatBox);
-    
+
         return borderPane;
     }
     
