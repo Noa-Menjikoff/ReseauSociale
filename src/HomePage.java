@@ -1,10 +1,8 @@
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -13,22 +11,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * La classe HomePage représente la page d'accueil de l'application.
+ */
 public class HomePage extends BorderPane {
     private Utilisateur utilisateur;
     private AppliReseau appli;
 
     private VBox messageArea;
-    private ChatClient chatClient; 
+    private ChatClient chatClient;
     private ConnexionMySQL connexion;
     private int userId;
     private MessageBD messageBD;
 
-  
+    /**
+     * Constructeur de la classe HomePage.
+     *
+     * @param connexion   La connexion à la base de données.
+     * @param appli       L'application réseau.
+     * @param utilisateur L'utilisateur connecté.
+     * @param ip          L'adresse IP du serveur de chat.
+     */
     public HomePage(ConnexionMySQL connexion, AppliReseau appli, Utilisateur utilisateur, String ip) {
         this.appli = appli;
         this.utilisateur = utilisateur;
         this.connexion = connexion;
-        this.executer();
         this.messageBD = new MessageBD(connexion);
         this.userId = utilisateur.getIdUtilisateur();
         this.connexion = connexion;
@@ -36,13 +43,16 @@ public class HomePage extends BorderPane {
         messageArea = new VBox();
         chatClient = new ChatClient(ip, 5555);
         chatClient.setMessageCallback(this::updateMessageArea);
+        this.initialize();
     }
 
-    private void executer(){
+    /**
+     * Initialise la configuration de la page d'accueil.
+     */
+    private void initialize() {
         GridPane leftGrid = new GridPane();
         leftGrid.setPadding(new Insets(60));
         Button buttonFollowed = new Button("Accédez à mes follows");
-
         Button buttonMessage = new Button("Accédez à mes discussions");
         Button button3 = new Button("Cherchez des contacts");
         Button button4 = new Button("Afficher mon historique");
@@ -52,6 +62,8 @@ public class HomePage extends BorderPane {
         leftGrid.add(button4, 0, 3);
         setLeft(leftGrid);
         setCenter(messageArea);
+
+        // Définir les actions des boutons
         buttonFollowed.setOnAction(e -> {
             try {
                 handleButtonAction("Button Followed");
@@ -82,68 +94,112 @@ public class HomePage extends BorderPane {
         });
     }
 
-
-
-
+    /**
+     * Gère l'action d'un bouton.
+     *
+     * @param buttonLabel Le libellé du bouton.
+     * @throws SQLException Si une erreur SQL survient.
+     */
     public void handleButtonAction(String buttonLabel) throws SQLException {
         GridPane newContent = new GridPane();
         newContent.setPadding(new Insets(10));
-        if (buttonLabel=="Button Followed"){
+        if ("Button Followed".equals(buttonLabel)) {
             setCenter(pageFollow(this.connexion, utilisateur));
-        }
-        else if (buttonLabel=="Button Contact"){
+        } else if ("Button Contact".equals(buttonLabel)) {
             setCenter(pageToFollow(this.connexion, utilisateur));
-        }
-        else if (buttonLabel=="Button Historique de message"){
+        } else if ("Button Historique de message".equals(buttonLabel)) {
             setCenter(pageHistoriqueMessage(connexion, utilisateur));
-        }
-        else if (buttonLabel == "Button Message"){
+        } else if ("Button Message".equals(buttonLabel)) {
             displayAllMessagesFromDatabase(connexion);
             setCenter(chat(userId));
         }
     }
 
+    /**
+     * Affiche la page des follows.
+     *
+     * @param connexion   La connexion à la base de données.
+     * @param utilisateur L'utilisateur connecté.
+     * @return Le contenu de la page des follows.
+     * @throws SQLException Si une erreur SQL survient.
+     */
     public GridPane pageFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException {
-        PageFollow pageFollow = new PageFollow(connexion, utilisateur,this);
+        PageFollow pageFollow = new PageFollow(connexion, utilisateur, this);
         return pageFollow.executer();
     }
 
-    public void setFollow() throws SQLException{
+    /**
+     * Définit la page des follows comme contenu central.
+     *
+     * @throws SQLException Si une erreur SQL survient.
+     */
+    public void setFollow() throws SQLException {
         setCenter(pageFollow(connexion, utilisateur));
     }
 
-    public void setToFollow() throws SQLException{
+    /**
+     * Définit la page des contacts à suivre comme contenu central.
+     *
+     * @throws SQLException Si une erreur SQL survient.
+     */
+    public void setToFollow() throws SQLException {
         setCenter(pageToFollow(connexion, utilisateur));
     }
 
-    public void setHistoriqueMessage() throws SQLException{
+    /**
+     * Définit la page de l'historique des messages comme contenu central.
+     *
+     * @throws SQLException Si une erreur SQL survient.
+     */
+    public void setHistoriqueMessage() throws SQLException {
         setCenter(pageHistoriqueMessage(connexion, utilisateur));
     }
 
-    public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
-        PageToFollow center = new PageToFollow(connexion, utilisateur,this);
+    /**
+     * Affiche la page des contacts à suivre.
+     *
+     * @param connexion   La connexion à la base de données.
+     * @param utilisateur L'utilisateur connecté.
+     * @return Le contenu de la page des contacts à suivre.
+     * @throws SQLException Si une erreur SQL survient.
+     */
+    public GridPane pageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException {
+        PageToFollow center = new PageToFollow(connexion, utilisateur, this);
         return center.executer();
     }
 
-    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException{
-        HistoriqueMessage center = new HistoriqueMessage(connexion,utilisateur,this);
+    /**
+     * Affiche la page de l'historique des messages.
+     *
+     * @param connexion   La connexion à la base de données.
+     * @param utilisateur L'utilisateur connecté.
+     * @return Le contenu de la page de l'historique des messages.
+     * @throws SQLException Si une erreur SQL survient.
+     */
+    public GridPane pageHistoriqueMessage(ConnexionMySQL connexion, Utilisateur utilisateur) throws SQLException {
+        HistoriqueMessage center = new HistoriqueMessage(connexion, utilisateur, this);
         return center.executer();
-
     }
 
+    // ... (Le reste de la classe reste inchangé)
 
-
+    /**
+     * Affiche tous les messages stockés dans la base de données.
+     *
+     * @param connexion La connexion à la base de données.
+     * @throws SQLException Si une erreur SQL survient.
+     */
     private void displayAllMessagesFromDatabase(ConnexionMySQL connexion) throws SQLException {
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
 
         try {
             String query = "SELECT messages.id_utilisateur, messages.contenu, messages.date_heure, utilisateurs.nom_utilisateur " +
-                            "FROM messages " +
-                            "JOIN utilisateurs ON messages.id_utilisateur = utilisateurs.id";
+                    "FROM messages " +
+                    "JOIN utilisateurs ON messages.id_utilisateur = utilisateurs.id";
 
             try (Connection dbConnection = connexion.getMySQLConnection();
-                PreparedStatement preparedStatement = dbConnection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery()) {
+                 PreparedStatement preparedStatement = dbConnection.prepareStatement(query);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
                     String nomUtilisateur = resultSet.getString("nom_utilisateur");
@@ -152,7 +208,7 @@ public class HomePage extends BorderPane {
 
                     String formattedMessage = String.format("%s (%s): %s", nomUtilisateur, dateHeure, contenu);
 
-                    // Update UI on the JavaFX Application Thread
+                    // Mise à jour de l'interface utilisateur sur le fil d'exécution de l'application JavaFX
                     Platform.runLater(() -> updateMessageArea(formattedMessage));
                 }
             }

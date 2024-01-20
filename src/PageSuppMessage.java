@@ -1,25 +1,36 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+/**
+ * La classe `PageSuppMessage` représente une page dans une application JavaFX qui affiche tous les messages
+ * de tous les utilisateurs et permet à l'administrateur de supprimer des messages.
+ *
+ * La classe interagit avec une base de données MySQL en utilisant la classe `ConnexionMySQL` pour récupérer
+ * et supprimer les messages.
+ *
+ */
 public class PageSuppMessage {
+    // Variables d'instance
     private ConnexionMySQL connexion;
     private Utilisateur utilisateur;
     private Adm page;
 
+    /**
+     * Construit un nouvel objet `PageSuppMessage`.
+     *
+     * @param connexion  La connexion à la base de données MySQL.
+     * @param utilisateur  L'utilisateur actuel.
+     * @param page  La page d'administration de l'application.
+     */
     public PageSuppMessage(ConnexionMySQL connexion, Utilisateur utilisateur, Adm page) {
         this.connexion = connexion;
         this.utilisateur = utilisateur;
         this.page = page;
     }
 
+    /**
+     * Exécute la fonctionnalité de la page, récupérant et affichant tous les messages
+     * de tous les utilisateurs avec des boutons de suppression associés.
+     *
+     * @return Un `GridPane` contenant les éléments de l'interface utilisateur pour la page.
+     */
     public GridPane executer() {
         GridPane center = new GridPane();
         center.setPadding(new Insets(10));
@@ -61,7 +72,12 @@ public class PageSuppMessage {
         return center;
     }
 
-    // Fonction pour supprimer un message
+    /**
+     * Supprime le message spécifié par son identifiant.
+     *
+     * @param idMessage L'identifiant du message à supprimer.
+     * @param idUtilisateur L'identifiant de l'utilisateur associé au message.
+     */
     private void supprimerMessage(int idMessage, int idUtilisateur) {
         String querySuppressionMessage = "DELETE FROM messages WHERE id_message = ?";
 

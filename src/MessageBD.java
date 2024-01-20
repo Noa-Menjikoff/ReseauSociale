@@ -1,42 +1,42 @@
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class MessageBD {
-	ConnexionMySQL laConnexion;
-	Statement st;
+    private ConnexionMySQL laConnexion;
 
-	MessageBD(ConnexionMySQL laConnexion){
-		this.laConnexion=laConnexion;
-	}
+    public MessageBD(ConnexionMySQL laConnexion) {
+        this.laConnexion = laConnexion;
+    }
 
-	int maxId() throws SQLException{
-		st = laConnexion.createStatement();
-		ResultSet rs = st.executeQuery("SELECT MAX(id_message) FROM messages");
-		rs.next();
-		int res = rs.getInt(1);
-		rs.close();
-		return res;
-	}
+    public int maxId() throws SQLException {
+        try (Statement st = laConnexion.createStatement()) {
+            ResultSet rs = st.executeQuery("SELECT MAX(id_message) FROM messages");
+            rs.next();
+            return rs.getInt(1);
+        }
+    }
 
-	int insererUtilisateur(int userId,String contenu) throws SQLException {
-		int num = maxId() + 1; // Génère le prochain numéro de l'utilisateur
-	
-		// Create the SQL statement to insert a new user
-		String insertQuery = "INSERT INTO messages (id_message, id_utilisateur, contenu, date_heure) VALUES (?, ?, ?, ?)";
-		
-		try (PreparedStatement pstmt = laConnexion.prepareStatement(insertQuery)) {
-			pstmt.setInt(1, num);
-			pstmt.setInt(2, userId);
-			pstmt.setString(3, contenu);
-			pstmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+    public int insererUtilisateur(int userId, String contenu) throws SQLException {
+        int num = maxId() + 1; // Génère le prochain numéro de l'utilisateur
 
-	
-			// Execute the insert query
-			pstmt.executeUpdate();
-		}
-	
-		return num;
-	}
-	
+        // Create the SQL statement to insert a new user
+        String insertQuery = "INSERT INTO messages (id_message, id_utilisateur, contenu, date_heure) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement pstmt = laConnexion.prepareStatement(insertQuery)) {
+            pstmt.setInt(1, num);
+            pstmt.setInt(2, userId);
+            pstmt.setString(3, contenu);
+            pstmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+
+            // Execute the insert query
+            pstmt.executeUpdate();
+        }
+
+        return num;
+    }
 }
-

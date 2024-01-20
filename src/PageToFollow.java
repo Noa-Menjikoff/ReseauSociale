@@ -1,25 +1,38 @@
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * La classe `PageToFollow` représente une page dans une application JavaFX qui affiche la liste des utilisateurs
+ * disponibles à suivre (c'est-à-dire les utilisateurs qui ne sont pas encore abonnés par l'utilisateur actuel).
+ * Elle permet à l'utilisateur de s'abonner à d'autres utilisateurs.
+ *
+ * La classe interagit avec une base de données MySQL en utilisant la classe `ConnexionMySQL` pour récupérer
+ * la liste des utilisateurs disponibles et gérer les abonnements.
+ *
+ */
 public class PageToFollow {
+    // Variables d'instance
     private ConnexionMySQL connexion;
     private Utilisateur utilisateur;
     private HomePage page;
-    public PageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur,HomePage page) {
+
+    /**
+     * Construit un nouvel objet `PageToFollow`.
+     *
+     * @param connexion  La connexion à la base de données MySQL.
+     * @param utilisateur  L'utilisateur actuel.
+     * @param page  La page d'accueil de l'application.
+     */
+    public PageToFollow(ConnexionMySQL connexion, Utilisateur utilisateur, HomePage page) {
         this.connexion = connexion;
         this.page = page;
         this.utilisateur = utilisateur;
     }
 
+    /**
+     * Exécute la fonctionnalité de la page, récupérant et affichant la liste des utilisateurs disponibles
+     * à suivre avec des boutons d'abonnement associés.
+     *
+     * @return Un `GridPane` contenant les éléments de l'interface utilisateur pour la page.
+     * @throws SQLException Si une erreur de base de données se produit.
+     */
     public GridPane executer() throws SQLException {
         connexion.connecter("servinfo-maria", "DBmenjikoff", "menjikoff", "menjikoff");
         GridPane center = new GridPane();
@@ -56,6 +69,12 @@ public class PageToFollow {
         return center;
     }
 
+    /**
+     * Vérifie si l'utilisateur actuel est déjà abonné à un utilisateur spécifié.
+     *
+     * @param idSuivi L'identifiant de l'utilisateur à vérifier.
+     * @return `true` si l'utilisateur actuel est abonné, sinon `false`.
+     */
     private boolean estAbonne(int idSuivi) {
         String query = "SELECT COUNT(*) FROM abonnements WHERE id_abonne = ? AND id_suivi = ?";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
@@ -72,6 +91,11 @@ public class PageToFollow {
         return false;
     }
 
+    /**
+     * Permet à l'utilisateur actuel de s'abonner à un autre utilisateur.
+     *
+     * @param idSuivi L'identifiant de l'utilisateur à suivre.
+     */
     private void sAbonner(int idSuivi) {
         String query = "INSERT INTO abonnements (id_abonne, id_suivi) VALUES (?, ?)";
         try (PreparedStatement preparedStatement = connexion.prepareStatement(query)) {
@@ -84,8 +108,4 @@ public class PageToFollow {
             e.printStackTrace();
         }
     }
-    
-
-    
-    
 }
