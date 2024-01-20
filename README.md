@@ -65,4 +65,6 @@ Gérez les publications de manière proactive en supprimant des messages indési
 2. Choisissez le message à supprimer.
 3. Validez l'action pour retirer le message de manière permanente.
 
+---
+
 N'oubliez pas de consulter la documentation complète pour des fonctionnalités avancées et des astuces d'utilisation. Profitez de votre expérience sur notre réseau social !
