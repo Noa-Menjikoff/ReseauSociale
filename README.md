@@ -41,4 +41,28 @@ Supprimez vos propres messages en accédant à la page "Gestion des Publications
 
 ---
 
+### 6. Espace Administrateur <a name="espace-administrateur"></a>
+
+Si vous avez des privilèges administratifs, accédez à l'Espace Administrateur en utilisant des identifiants définis dans la base de données. Suivez ces étapes :
+
+- **Identifiants :** Connectez-vous avec les identifiants administratifs spécifiques définis dans la base de données.
+
+Sur l'Espace Administrateur, bénéficiez des fonctionnalités avancées de gestion :
+
+#### Suppression d'Utilisateur
+
+Sur cette page, supprimez un utilisateur en effectuant les actions suivantes :
+
+1. Identifiez l'utilisateur à supprimer.
+2. Sélectionnez l'option de suppression correspondante.
+3. Confirmez l'action pour effacer définitivement le compte utilisateur.
+
+#### Suppression de Message
+
+Gérez les publications de manière proactive en supprimant des messages indésirables :
+
+1. Accédez à la liste des messages.
+2. Choisissez le message à supprimer.
+3. Validez l'action pour retirer le message de manière permanente.
+
 N'oubliez pas de consulter la documentation complète pour des fonctionnalités avancées et des astuces d'utilisation. Profitez de votre expérience sur notre réseau social !
